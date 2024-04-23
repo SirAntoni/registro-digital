@@ -82,7 +82,7 @@
 
                 <div class="dropdown-menu notification-menu">
                     <div class="notification-title">
-                        <span class="float-end badge badge-default">230</span>
+                        <span class="float-end badge badge-default">123</span>
                         Messages
                     </div>
 
