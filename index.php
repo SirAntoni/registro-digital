@@ -19,6 +19,18 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800|Shadows+Into+Light"
 		rel="stylesheet" type="text/css">
 
+	<!-- Vendor CSS -->
+	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+	<link rel="stylesheet" href="vendor/animate/animate.compat.css">
+	<link rel="stylesheet" href="vendor/font-awesome/css/all.min.css" />
+	<link rel="stylesheet" href="vendor/boxicons/css/boxicons.min.css" />
+	<link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css" />
+	<link rel="stylesheet" href="vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+	<link rel="stylesheet" href="vendor/select2/css/select2.css" />
+	<link rel="stylesheet" href="vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+	<link rel="stylesheet" href="vendor/datatables/media/css/dataTables.bootstrap5.css" />
+
+
 	<!-- Theme CSS -->
 	<link rel="stylesheet" href="css/theme.css" />
 
@@ -30,18 +42,6 @@
 
 	<!-- Head Libs -->
 	<script src="vendor/modernizr/modernizr.js"></script>
-
-
-	<!-- Vendor CSS -->
-	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
-	<link rel="stylesheet" href="vendor/animate/animate.compat.css">
-	<link rel="stylesheet" href="vendor/font-awesome/css/all.min.css" />
-	<link rel="stylesheet" href="vendor/boxicons/css/boxicons.min.css" />
-	<link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css" />
-	<link rel="stylesheet" href="vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
-	<link rel="stylesheet" href="vendor/select2/css/select2.css" />
-	<link rel="stylesheet" href="vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
-	<link rel="stylesheet" href="vendor/datatables/media/css/dataTables.bootstrap5.css" />
 
 </head>
 
@@ -155,6 +155,29 @@
 
 	<!-- Theme Initialization Files -->
 	<script src="js/theme.init.js"></script>
+
+	<!-- Specific Page Vendor -->
+	<script src="vendor/select2/js/select2.js"></script>
+	<script src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="vendor/datatables/media/js/dataTables.bootstrap5.min.js"></script>
+	<script src="vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+	<script src="vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
+	<script src="vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
+	<script src="vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
+	<script src="vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
+	<script src="vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
+	<script src="vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
+
+	<!-- Theme Base, Components and Settings -->
+	<script src="js/theme.js"></script>
+
+	<!-- Theme Custom -->
+	<script src="js/custom.js"></script>
+
+	<!-- Examples -->
+	<script src="js/examples/examples.datatables.default.js"></script>
+	<script src="js/examples/examples.datatables.row.with.details.js"></script>
+	<script src="js/examples/examples.datatables.tabletools.js"></script>
 
 </body>
 
