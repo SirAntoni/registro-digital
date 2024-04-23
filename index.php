@@ -52,6 +52,7 @@
 				<?php require './includes/navbar.php' ?>
 
 					<!-- start: page -->
+					<?php require './views/view-registros.php' ?>
 					<!-- end: page -->
 				</section>
 			</div>
@@ -124,6 +125,7 @@
 				</div>
 			</aside>
 		</section>
+
 
 		<!-- Vendor -->
 		<script src="vendor/jquery/jquery.js"></script>
