@@ -1,4 +1,68 @@
 <div class="row">
+    <div class="col-lg-12">
+        <section class="card">
+            <header class="card-header">
+
+                <h2 class="card-title">Formulario</h2>
+            </header>
+            <div class="card-body pt-5">
+                <form class="row gx-3 gy-2 align-items-center">
+                    <div class="form-group row pb-4">
+                        <label class="col-lg-3 control-label text-lg-end pt-2" for="inputDefault">Usuario</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="inputDefault">
+                        </div>
+                    </div>
+                    <div class="form-group row pb-4">
+                        <label class="col-lg-3 control-label text-lg-end pt-2" for="inputDefault">Contraseña</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="inputDefault">
+                        </div>
+                    </div>
+                    <div class="form-group row pb-4">
+                        <label class="col-lg-3 control-label text-lg-end pt-2" for="inputDefault">Nombres</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="inputDefault">
+                        </div>
+                    </div>
+                    <div class="form-group row pb-4">
+                        <label class="col-lg-3 control-label text-lg-end pt-2" for="inputDefault">Apellidos</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="inputDefault">
+                        </div>
+                    </div>
+
+                    <div class="form-group row pb-4">
+                        <label class="col-lg-3 control-label text-lg-end pt-2">Rol</label>
+                        <div class="col-lg-6">
+
+                            <select class="form-control mb-3">
+                                <option>Seleccionar</option>
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <footer class="card-footer">
+                        <div class="row justify-content-end">
+                            <div class="col-sm-9">
+                                <button class="btn btn-primary">Submit</button>                               
+                            </div>
+                        </div>
+                    </footer>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+<!--  TABLA DE USUARIOS
+<div class="row">
     <div class="col">
         <section class="card">
             <header class="card-header">
@@ -15,7 +79,7 @@
 
                     <thead>
                         <tr>
-                            <th>Usuarios</th>
+                            <th>Usuario</th>
                             <th>Nombre</th>
                             <th>Rango</th> 
                             <th>Acciones</th>
@@ -435,4 +499,4 @@
         </section>
     </div>
 </div>
-
+-->
