@@ -59,7 +59,7 @@
 			<?php require './includes/navbar.php' ?>
 
 			<!-- start: page -->
-			<?php require './views/view-registros.php' ?>
+			<?php require './views/usuarios.php' ?>
 			<!-- end: page -->
 	</section>
 	</div>

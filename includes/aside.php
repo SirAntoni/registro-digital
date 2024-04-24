@@ -16,34 +16,16 @@
 				                <ul class="nav nav-main">
 				                    <li>
 				                        <a class="nav-link" href="layouts-default.html">
-				                            <i class="bx bx-home-alt" aria-hidden="true"></i>
-				                            <span>Dashboard</span>
+				                            <i class="bx bx-detail" aria-hidden="true"></i>
+				                            <span>Registros</span>
 				                        </a>                        
 				                    </li>
 									<li>
-				                        <a class="nav-link" href="layouts-default.html">
-				                            <i class="bx bx-home-alt" aria-hidden="true"></i>
-				                            <span>Dashboard</span>
+				                        <a class="nav-link" href="views/usuarios.php">
+				                            <i class="bx bx-group" aria-hidden="true"></i>
+				                            <span>Usuarios</span>
 				                        </a>                        
-				                    </li>
-									<li>
-				                        <a class="nav-link" href="layouts-default.html">
-				                            <i class="bx bx-home-alt" aria-hidden="true"></i>
-				                            <span>Dashboard</span>
-				                        </a>                        
-				                    </li>
-									<li>
-				                        <a class="nav-link" href="layouts-default.html">
-				                            <i class="bx bx-home-alt" aria-hidden="true"></i>
-				                            <span>Dashboard</span>
-				                        </a>                        
-				                    </li>      
-									<li>
-				                        <a class="nav-link" href="layouts-default.html">
-				                            <i class="bx bx-home-alt" aria-hidden="true"></i>
-				                            <span>Dashboard</span>
-				                        </a>                        
-				                    </li>      									   
+				                    </li>  									   
 				                </ul>
 				            </nav>
 
