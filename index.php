@@ -61,6 +61,7 @@
 			<!-- start: page -->
 			<?php require './views/usuarios.php' ?>
 			<!-- end: page -->
+
 		</div>
 
 		<aside id="sidebar-right" class="sidebar-right">
