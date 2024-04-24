@@ -1,21 +1,22 @@
 <section role="main" class="content-body">
-					<header class="page-header">
-						<h2>Blank Page</h2>
+	<header class="page-header">
+		<h2>Blank Page</h2>
 
-						<div class="right-wrapper text-end">
-							<ol class="breadcrumbs">
-								<li>
-									<a href="index.html">
-										<i class="bx bx-home-alt"></i>
-									</a>
-								</li>
+		<div class="right-wrapper text-end">
+			<ol class="breadcrumbs">
+				<li>
+					<a href="index.html">
+						<i class="bx bx-home-alt"></i>
+					</a>
+				</li>
 
-								<li><span>Pages</span></li>
+				<li><span>Pages</span></li>
 
-								<li><span>Blank Page</span></li>
+				<li><span>Blank Page</span></li>
 
-							</ol>
+			</ol>
 
-							<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
-						</div>
-					</header>
+			<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
+		</div>
+	</header>
+</section>
