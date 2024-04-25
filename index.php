@@ -17,7 +17,8 @@
 
 	<!-- AJAX -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	
+
+
 	<!-- Web Fonts  -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800|Shadows+Into+Light"
 		rel="stylesheet" type="text/css">
@@ -135,6 +136,21 @@
 			</div>
 		</aside>
 	</section>
+
+
+	<script>
+		$('#enviar').click(function () {
+			$.ajax({
+				url: "views/datos.php",
+				type: "post",
+				data: $("#usuarios_form").serialize(),
+				success: function (resultado) {
+					$("#resultado").html(resultado);
+				}
+			});
+		});
+	</script>
+
 
 
 	<!-- Vendor -->

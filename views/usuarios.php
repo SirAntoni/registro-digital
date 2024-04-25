@@ -37,10 +37,10 @@
                     </div>
 
                     <div class="form-group row pb-4">
-                        <label class="col-lg-3 control-label text-lg-end pt-2" name="rol" for="rol">Rol</label>
+                        <label class="col-lg-3 control-label text-lg-end pt-2" for="rol">Rol</label>
                         <div class="col-lg-6">
 
-                            <select class="form-control mb-3">
+                            <select id="rol" name="rol" class="form-control mb-3">
                                 <option>Seleccionar</option>
                                 <option>Option 1</option>
                                 <option>Option 2</option>
@@ -53,15 +53,20 @@
                     <footer class="card-footer">
                         <div class="row justify-content-end">
                             <div class="col-sm-9">
-                                <button type="button" id="enviar" class="btn btn-primary">Enviar</button>                               
+                                <button type="button" id="enviar" class="btn btn-primary">Enviar</button>
                             </div>
                         </div>
                     </footer>
-                    
+
                 </form>
+
             </div>
         </section>
     </div>
+</div>
+
+<div id="resultado">
+
 </div>
 
 
