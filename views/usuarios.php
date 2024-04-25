@@ -6,34 +6,38 @@
                 <h2 class="card-title">Formulario</h2>
             </header>
             <div class="card-body pt-5">
-                <form class="row gx-3 gy-2 align-items-center">
+                <form id="usuarios_form" method="post" class="row gx-3 gy-2 align-items-center">
+
                     <div class="form-group row pb-4">
-                        <label class="col-lg-3 control-label text-lg-end pt-2" for="inputDefault">Usuario</label>
+                        <label class="col-lg-3 control-label text-lg-end pt-2" for="usuario">Usuario</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="inputDefault">
-                        </div>
-                    </div>
-                    <div class="form-group row pb-4">
-                        <label class="col-lg-3 control-label text-lg-end pt-2" for="inputDefault">Contraseña</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" id="inputDefault">
-                        </div>
-                    </div>
-                    <div class="form-group row pb-4">
-                        <label class="col-lg-3 control-label text-lg-end pt-2" for="inputDefault">Nombres</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" id="inputDefault">
-                        </div>
-                    </div>
-                    <div class="form-group row pb-4">
-                        <label class="col-lg-3 control-label text-lg-end pt-2" for="inputDefault">Apellidos</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" id="inputDefault">
+                            <input type="text" class="form-control" name="usuario" id="usuario">
                         </div>
                     </div>
 
                     <div class="form-group row pb-4">
-                        <label class="col-lg-3 control-label text-lg-end pt-2">Rol</label>
+                        <label class="col-lg-3 control-label text-lg-end pt-2" for="contrasena">Contraseña</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="contrasena" id="contrasena">
+                        </div>
+                    </div>
+
+                    <div class="form-group row pb-4">
+                        <label class="col-lg-3 control-label text-lg-end pt-2" for="nombres">Nombres</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="nombres" id="nombres">
+                        </div>
+                    </div>
+
+                    <div class="form-group row pb-4">
+                        <label class="col-lg-3 control-label text-lg-end pt-2" for="apellidos">Apellidos</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="apellidos" id="apellidos">
+                        </div>
+                    </div>
+
+                    <div class="form-group row pb-4">
+                        <label class="col-lg-3 control-label text-lg-end pt-2" name="rol" for="rol">Rol</label>
                         <div class="col-lg-6">
 
                             <select class="form-control mb-3">
@@ -49,10 +53,11 @@
                     <footer class="card-footer">
                         <div class="row justify-content-end">
                             <div class="col-sm-9">
-                                <button class="btn btn-primary">Submit</button>                               
+                                <button type="button" id="enviar" class="btn btn-primary">Enviar</button>                               
                             </div>
                         </div>
                     </footer>
+                    
                 </form>
             </div>
         </section>
