@@ -141,7 +141,7 @@
 	<script>
 		$('#enviar').click(function () {
 			$.ajax({
-				url: "views/datos.php",
+				url: "controller/datos_usuarios.php",
 				type: "post",
 				data: $("#usuarios_form").serialize(),
 				success: function (resultado) {
