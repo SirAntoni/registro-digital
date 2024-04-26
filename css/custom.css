@@ -1,1 +1,6 @@
 /* Add here all your CSS customizations */
+.fotoPerfil{
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}

@@ -2079,7 +2079,7 @@ html.no-overflowscrolling.sidebar-light:not(.dark) .inner-menu .nano {
 	display: inline-block;
 	font-size: 0;
 	line-height: 50px;
-	margin: 0;
+	margin: 0 20px 0 0;
 	padding: 0;
 }
 

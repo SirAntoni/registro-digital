@@ -1,4 +1,4 @@
-<section role="main" class="content-body">
+
 	<header class="page-header">
 		<h2>Blank Page</h2>
 
@@ -15,7 +15,6 @@
 				<li><span>Blank Page</span></li>
 
 			</ol>
-
-			<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
+			
 		</div>
 	</header>
