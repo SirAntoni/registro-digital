@@ -19,7 +19,7 @@ Theme Version: 	4.2.0
 			xkey: 'y',
 			ykeys: ['a', 'b'],
 			labels: ['Series A', 'Series B'],
-			barColors: ['#0088cc', '#2baab1'],
+			barColors: ['#03BB85', '#2baab1'],
 			fillOpacity: 0.7,
 			smooth: false,
 			stacked: true,

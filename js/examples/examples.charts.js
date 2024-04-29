@@ -224,7 +224,7 @@ Theme Version: 	4.2.0
 			ykeys: ['a', 'b'],
 			labels: ['Series A', 'Series B'],
 			hideHover: true,
-			lineColors: ['#0088cc', '#734ba9'],
+			lineColors: ['#03BB85', '#734ba9'],
 		});
 	}
 
@@ -236,7 +236,7 @@ Theme Version: 	4.2.0
 			resize: true,
 			element: 'morrisDonut',
 			data: morrisDonutData,
-			colors: ['#0088cc', '#734ba9', '#E36159']
+			colors: ['#03BB85', '#734ba9', '#E36159']
 		});
 	}
 
@@ -252,7 +252,7 @@ Theme Version: 	4.2.0
 			ykeys: ['a', 'b'],
 			labels: ['Series A', 'Series B'],
 			hideHover: true,
-			barColors: ['#0088cc', '#2baab1']
+			barColors: ['#03BB85', '#2baab1']
 		});
 	}
 
@@ -267,7 +267,7 @@ Theme Version: 	4.2.0
 			xkey: 'y',
 			ykeys: ['a', 'b'],
 			labels: ['Series A', 'Series B'],
-			lineColors: ['#0088cc', '#2baab1'],
+			lineColors: ['#03BB85', '#2baab1'],
 			fillOpacity: 0.7,
 			hideHover: true
 		});
@@ -284,7 +284,7 @@ Theme Version: 	4.2.0
 			xkey: 'y',
 			ykeys: ['a', 'b'],
 			labels: ['Series A', 'Series B'],
-			barColors: ['#0088cc', '#2baab1'],
+			barColors: ['#03BB85', '#2baab1'],
 			fillOpacity: 0.7,
 			smooth: false,
 			stacked: true,
@@ -308,8 +308,8 @@ Theme Version: 	4.2.0
 						color: '#444' // Fill color
 					},
 					limitMax: 'true', // If true, the pointer will not go past the end of the gauge
-					colorStart: '#0088CC', // Colors
-					colorStop: '#0088CC', // just experiment with them
+					colorStart: '#03BB85', // Colors
+					colorStop: '#03BB85', // just experiment with them
 					strokeColor: '#F1F1F1', // to see which ones work best for you
 					generateGradient: true
 				}, target.data('plugin-options'));
@@ -360,7 +360,7 @@ Theme Version: 	4.2.0
 	if( $('#meter').get(0) ) {
 		$('#meter').liquidMeter({
 			shape: 'circle',
-			color: '#0088CC',
+			color: '#03BB85',
 			background: '#F9F9F9',
 			fontSize: '24px',
 			fontWeight: '600',
@@ -379,14 +379,14 @@ Theme Version: 	4.2.0
 	if( $('#meterDark').get(0) ) {
 		$('#meterDark').liquidMeter({
 			shape: 'circle',
-			color: '#0088CC',
+			color: '#03BB85',
 			background: '#272A31',
 			stroke: '#33363F',
 			fontSize: '24px',
 			fontWeight: '600',
 			textColor: '#FFFFFF',
 			liquidOpacity: 0.9,
-			liquidPalette: ['#0088CC'],
+			liquidPalette: ['#03BB85'],
 			speed: 3000,
 			animate: !$.browser.mobile
 		});
@@ -400,7 +400,7 @@ Theme Version: 	4.2.0
 			type: 'line',
 			width: '80',
 			height: '30',
-			lineColor: '#0088cc'
+			lineColor: '#03BB85'
 		});
 	}
 
@@ -412,7 +412,7 @@ Theme Version: 	4.2.0
 			type: 'bar',
 			width: '80',
 			height: '30',
-			barColor: '#0088cc',
+			barColor: '#03BB85',
 			negBarColor: '#B20000'
 		});
 	}
@@ -425,7 +425,7 @@ Theme Version: 	4.2.0
 			type: 'tristate',
 			width: '80',
 			height: '30',
-			posBarColor: '#0088cc',
+			posBarColor: '#03BB85',
 			negBarColor: '#B20000'
 		});
 	}
@@ -438,7 +438,7 @@ Theme Version: 	4.2.0
 			type: 'discrete',
 			width: '80',
 			height: '30',
-			lineColor: '#0088cc'
+			lineColor: '#03BB85'
 		});
 	}
 
@@ -451,7 +451,7 @@ Theme Version: 	4.2.0
 			width: '80',
 			height: '30',
 			targetColor: '#ff7f00',
-			performanceColor: '#0088cc'
+			performanceColor: '#03BB85'
 		});
 	}
 
@@ -462,7 +462,7 @@ Theme Version: 	4.2.0
 		$("#sparklinePie").sparkline(sparklinePieData, {
 			type: 'pie',
 			height: '30',
-			barColor: '#0088cc'
+			barColor: '#03BB85'
 		});
 	}
 

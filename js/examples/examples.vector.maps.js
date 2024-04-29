@@ -18,7 +18,7 @@ Theme Version: 	4.2.0
 			borderWidth:1,
 			showTooltip: true,
 			values: sample_data,
-			scaleColors: ['#1AA2E6', '#0088CC'],
+			scaleColors: ['#1AA2E6', '#03BB85'],
 			normalizeFunction: 'polynomial'
 		};
 

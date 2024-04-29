@@ -82,7 +82,7 @@ Theme Version: 	4.2.0
 				type: 'bar',
 				width: '80',
 				height: '50',
-				barColor: '#0088cc',
+				barColor: '#03BB85',
 				negBarColor: '#B20000'
 			});
 		}

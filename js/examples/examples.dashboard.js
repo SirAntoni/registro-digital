@@ -166,7 +166,7 @@ Theme Version: 	4.2.0
 	if( $('#meterSales').get(0) ) {
 		$('#meterSales').liquidMeter({
 			shape: 'circle',
-			color: '#0088cc',
+			color: '#03BB85',
 			background: '#F9F9F9',
 			fontSize: '24px',
 			fontWeight: '600',
@@ -342,7 +342,7 @@ Theme Version: 	4.2.0
 			type: 'bar',
 			width: '80',
 			height: '55',
-			barColor: '#0088cc',
+			barColor: '#03BB85',
 			negBarColor: '#B20000'
 		};
 
@@ -358,7 +358,7 @@ Theme Version: 	4.2.0
 			type: 'line',
 			width: '80',
 			height: '55',
-			lineColor: '#0088cc'
+			lineColor: '#03BB85'
 		};
 
 		$("#sparklineLineDash").sparkline(sparklineLineDashData, sparklineLineDashOptions);
@@ -373,13 +373,13 @@ Theme Version: 	4.2.0
 			backgroundColor: null,
 			color: '#FFF',
 			hoverOpacity: 0.7,
-			selectedColor: '#0088CC',
+			selectedColor: '#03BB85',
 			selectedRegions: ['US'],
 			enableZoom: true,
 			borderWidth:1,
 			showTooltip: true,
 			values: sample_data,
-			scaleColors: ['#0088cc'],
+			scaleColors: ['#03BB85'],
 			normalizeFunction: 'polynomial'
 		};
 

@@ -21,7 +21,6 @@
 		<link rel="stylesheet" href="vendor/font-awesome/css/all.min.css" />
 		<link rel="stylesheet" href="vendor/boxicons/css/boxicons.min.css" />
 		<link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css" />
-		<link rel="stylesheet" href="vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="css/theme.css" />
@@ -41,17 +40,17 @@
 		<section class="body-sign">
 			<div class="center-sign">
 				<a href="/" class="logo float-start">
-					<img src="img/logo.png" height="70" alt="Porto Admin" />
+					<img src="img/logoej.png" height="70" alt="Porto Admin" />
 				</a>
 
 				<div class="panel card-sign">
 					<div class="card-title-sign mt-3 text-end">
-						<h2 class="title text-uppercase font-weight-bold m-0"><i class="bx bx-user-circle me-1 text-6 position-relative top-5"></i> Sign In</h2>
+						<h2 class="title text-uppercase font-weight-bold m-0"><i class="bx bx-user-circle me-1 text-6 position-relative top-5"></i> Iniciar Sesión</h2>
 					</div>
 					<div class="card-body">
 						<form action="index.html" method="post">
 							<div class="form-group mb-3">
-								<label>Username</label>
+								<label>Usuario</label>
 								<div class="input-group">
 									<input name="username" type="text" class="form-control form-control-lg" />
 									<span class="input-group-text">
@@ -62,8 +61,7 @@
 
 							<div class="form-group mb-3">
 								<div class="clearfix">
-									<label class="float-start">Password</label>
-									<a href="pages-recover-password.html" class="float-end">Lost Password?</a>
+									<label class="float-start">Contraseña</label>
 								</div>
 								<div class="input-group">
 									<input name="pwd" type="password" class="form-control form-control-lg" />
@@ -74,13 +72,7 @@
 							</div>
 
 							<div class="row">
-								<div class="col-sm-8">
-									<div class="checkbox-custom checkbox-default">
-										<input id="RememberMe" name="rememberme" type="checkbox"/>
-										<label for="RememberMe">Remember Me</label>
-									</div>
-								</div>
-								<div class="col-sm-4 text-end">
+								<div class="col-sm-12 text-end">
 									<button type="submit" class="btn btn-primary mt-2">Sign In</button>
 								</div>
 							</div>
@@ -88,7 +80,7 @@
 					</div>
 				</div>
 
-				<p class="text-center text-muted mt-3 mb-3">&copy; Copyright 2023. All Rights Reserved.</p>
+				<p class="text-center text-muted mt-3 mb-3">&copy; Copyright 2024. All Rights Reserved.</p>
 			</div>
 		</section>
 		<!-- end: page -->
@@ -98,7 +90,6 @@
 		<script src="vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
 		<script src="vendor/popper/umd/popper.min.js"></script>
 		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 		<script src="vendor/common/common.js"></script>
 		<script src="vendor/nanoscroller/nanoscroller.js"></script>
 		<script src="vendor/magnific-popup/jquery.magnific-popup.js"></script>

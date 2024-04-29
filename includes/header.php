@@ -1,7 +1,7 @@
 <header class="header">
     <div class="logo-container">
         <a href="../4.2.0" class="logo">
-            <img src="img/logo.png" width="75" height="35" alt="Porto Admin" />
+            <img src="img/logo-e.png" height="35" alt="Porto Admin" />
         </a>
 
         <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html"
