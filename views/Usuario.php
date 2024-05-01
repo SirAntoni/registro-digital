@@ -20,8 +20,10 @@
                                 <th>Nombre</th>
                                 <th>Apellidos</th>
                                 <th class='d-none'>Foto</th>
+                                <th class='d-none'>Firma</th>
                                 <th>Rol</th>
                                 <th class='d-none'>Rol id</th>
+                                <th>Estado</th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
@@ -37,7 +39,7 @@
 
 <div id="modalForm" class="modal-block modal-block-primary mfp-hide zoom-anim-dialog modal-block-lg">
     <section class="card">
-        <form id='formCategorias' class='form'>
+        <form id='formUsuarios' class='form'>
             <header class="card-header">
                 <h2 class="modalTitle card-title"></h2>
             </header>
@@ -47,7 +49,7 @@
                 <input type="hidden" class='opcion' name='opcion'>
                 <input type="hidden" class='id' name='id'>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div id='fotoPerfil' class="col-md-4">
                         <img src="./img/user.jpg" alt="" class='fotoPerfil'>
                     </div>
                     <div class="col-sm-8">
@@ -69,35 +71,35 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group mb-2">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" name='nombre' class="form-control" id="nombre"
-                                        placeholder="Nombre">
+                                    <label for="nombres">Nombre</label>
+                                    <input type="text" name='nombres' class="form-control" id="nombres"
+                                        placeholder="Nombres">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group mb-2">
-                                    <label for="apellido">Apellido</label>
-                                    <input type="text" name='apellido' class="form-control" id="apellido"
-                                        placeholder="Apellido">
+                                    <label for="apellidos">Apellido</label>
+                                    <input type="text" name='apellidos' class="form-control" id="apellidos"
+                                        placeholder="Apellidos">
                                 </div>
                             </div>
-                           
+
                             <div class="col-sm-6">
                                 <div class="form-group mb-2">
                                     <label rol="foto">Foto</label>
                                     <div class="fileupload fileupload-new" data-provides="fileupload">
                                         <div class="input-append">
                                             <div class="uneditable-input">
-                                                <i class="fas fa-file fileupload-exists"></i>
                                                 <span class="fileupload-preview"></span>
                                             </div>
                                             <span class="btn btn-default btn-file">
-                                            <span class="fileupload-exists"><i class='bx bx-refresh' ></i></span>
+                                                <span class="fileupload-exists"><i class='bx bx-refresh'></i></span>
                                                 <span class="fileupload-new"><i class='bx bxs-folder-open'></i></span>
-                                                <input type="file" />
+                                                <input type="file" name='foto' id='foto' />
+                                                <input type="hidden" name='archivoFoto' id='archivoFoto' />
                                             </span>
                                             <a href="#" class="btn btn-default fileupload-exists"
-                                                data-dismiss="fileupload"><i class='bx bxs-trash' ></i></a>
+                                                data-dismiss="fileupload"><i class='bx bxs-trash'></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -108,16 +110,16 @@
                                     <div class="fileupload fileupload-new" data-provides="fileupload">
                                         <div class="input-append">
                                             <div class="uneditable-input">
-                                                <i class="fas fa-file fileupload-exists"></i>
                                                 <span class="fileupload-preview"></span>
                                             </div>
                                             <span class="btn btn-default btn-file">
-                                                <span class="fileupload-exists"><i class='bx bx-refresh' ></i></span>
+                                                <span class="fileupload-exists"><i class='bx bx-refresh'></i></span>
                                                 <span class="fileupload-new"><i class='bx bxs-folder-open'></i></span>
-                                                <input type="file" />
+                                                <input type="file" name='firma' id='firma' />
+                                                <input type="hidden" name='archivoFirma' id='archivoFirma' value="" />
                                             </span>
                                             <a href="#" class="btn btn-default fileupload-exists"
-                                                data-dismiss="fileupload"><i class='bx bxs-trash' ></i></a>
+                                                data-dismiss="fileupload"><i class='bx bxs-trash'></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -129,6 +131,15 @@
                                         <option value="1">Administrador</option>
                                         <option value="2">Operador</option>
                                         <option value="3">Validador</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group mb-2">
+                                    <label for="estado">Estado</label>
+                                    <select id="estado" name="estado" class="form-control">
+                                        <option value="activo">Activo</option>
+                                        <option value="inactivo">Inactivo</option>
                                     </select>
                                 </div>
                             </div>
@@ -169,9 +180,9 @@
         <footer class="card-footer">
             <div class="row">
                 <div class="col-md-12 text-end">
-                    <form id="formCategoriasDelete" class='form'>
+                    <form id="formUsuariosDelete" class='form'>
                         <input type="hidden" class='opcion' name='opcion'>
-                        <input type="hidden" class='codigo' name='codigo'>
+                        <input type="hidden" class='id' name='id'>
                         <button type='submit' class="btnSubmit btn btn-danger">Eliminar</button>
                         <button class="btn btn-default modal-dismiss">Cancelar</button>
                     </form>

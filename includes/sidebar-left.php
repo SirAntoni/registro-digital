@@ -15,18 +15,20 @@
 			<nav id="menu" class="nav-main" role="navigation">
 
 				<ul class="nav nav-main">
-					<li>
-						<a class="nav-link" href="layouts-default.html">
+					<li <?php echo ($view === 'registros') ? 'class="nav-active nav-expanded"':''; ?>>
+						<a class="nav-link" href="index?view=registros">
 							<i class="bx bx-detail" aria-hidden="true"></i>
 							<span>Registros</span>
 						</a>
 					</li>
-					<li>
-						<a class="nav-link" href="views/usuarios.php">
-							<i class="bx bx-group" aria-hidden="true"></i>
-							<span>Usuarios</span>
-						</a>
-					</li>
+					<?php if($_SESSION['rol'] === '1'){ ?>
+						<li <?php echo ($view === 'usuarios' || $view === 'perfil') ? 'class="nav-active nav-expanded"':''; ?>>
+							<a class="nav-link" href="index?view=usuarios">
+								<i class="bx bx-group" aria-hidden="true"></i>
+								<span>Usuarios</span>
+							</a>
+						</li>
+					<?php }  ?>
 				</ul>
 			</nav>
 

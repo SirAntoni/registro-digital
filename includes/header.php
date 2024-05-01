@@ -19,13 +19,13 @@
 
         <div id="userbox" class="userbox">
             <a href="#" data-bs-toggle="dropdown">
-                <figure class="profile-picture">
-                    <img src="img/!logged-user.jpg" alt="Joseph Doe" class="rounded-circle"
-                        data-lock-picture="img/!logged-user.jpg" />
+                <figure id="imgHeader" class="profile-picture">
+                    
                 </figure>
+
                 <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-                    <span class="name">John Doe Junior</span>
-                    <span class="role">Administrator</span>
+                    <span id="nameHeader" class="name"></span>
+                    <span id="rolHeader" class="role"></span>
                 </div>
 
                 <i class="fa custom-caret"></i>
@@ -35,16 +35,12 @@
                 <ul class="list-unstyled mb-2">
                     <li class="divider"></li>
                     <li>
-                        <a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i
-                                class="bx bx-user-circle"></i> My Profile</a>
+                        <a role="menuitem" tabindex="-1" href="index?view=perfil"><i
+                                class="bx bx-user-circle"></i> Mi perfil</a>
                     </li>
                     <li>
-                        <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="bx bx-lock"></i>
-                            Lock Screen</a>
-                    </li>
-                    <li>
-                        <a role="menuitem" tabindex="-1" href="pages-signin.html"><i class="bx bx-power-off"></i>
-                            Logout</a>
+                        <a role="menuitem" tabindex="-1" href="logout"><i class="bx bx-power-off"></i>
+                            Cerrar Sesión</a>
                     </li>
                 </ul>
             </div>

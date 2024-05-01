@@ -4,3 +4,11 @@
     border-radius: 10px;
     margin-bottom: 20px;
 }
+
+div:where(.swal2-container) {
+    z-index: 10001 !important;
+}
+
+.vertical-align {
+    vertical-align: middle;
+}

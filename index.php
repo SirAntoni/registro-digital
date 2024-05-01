@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['id']))
+	header("Location:login");
+
+if (isset($_GET['view']) && $_GET['view'] === 'usuarios' && $_SESSION['rol'] !== '1')
+	header("Location:logout");
+
+?>
 <!doctype html>
 <html class="fixed sidebar-left-xs">
 
@@ -58,6 +68,7 @@
 		<!-- end: header -->
 
 		<div class="inner-wrapper">
+			<?php $view = $_GET['view']; ?>
 			<!-- start: sidebar -->
 			<?php require './includes/sidebar-left.php' ?>
 			<!-- end: sidebar -->
@@ -66,8 +77,28 @@
 
 				<?php require './includes/navbar.php' ?>
 
+
+
 				<!-- start: page -->
-				<?php require './views/Usuario.php' ?>
+
+				<?php
+
+				switch ($view) {
+					case "registros":
+						require './views/Registro.php';
+						break;
+					case "usuarios":
+						require './views/Usuario.php';
+						break;
+					case "perfil":
+						require './views/Perfil.php';
+						break;
+					default:
+						require './views/Registro.php';
+						break;
+				}
+
+				?>
 				<!-- end: page -->
 			</section>
 		</div>
@@ -107,6 +138,7 @@
 	<script src="vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
 	<script src="vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
 	<script src="vendor/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<!-- Theme Base, Components and Settings -->
 	<script src="js/theme.js"></script>
