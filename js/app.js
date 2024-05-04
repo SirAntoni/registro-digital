@@ -4,7 +4,20 @@ const params = new URLSearchParams(url.search);
 
 $(function () {
 
-    cargar_perfil();
+
+
+    logout();
+
+    if (params.get('view') === "registros") {
+        cargar_perfil_2();
+        store_registros();
+        obtener_validadores();
+        filtrarRegistros();
+        firmarDocumento();
+
+    } else {
+        cargar_perfil();
+    }
 
     if (params.get('view') === "usuarios") {
         listar_usuarios();
@@ -17,31 +30,219 @@ $(function () {
         editar_perfil();
     }
 
+
+
 });
 
-const cargar_perfil = () => {
-    $.ajax({
-        url:"controller/Usuario",
-        method: "POST",
-        data:{opcion:"obtener_perfil"},
-        success: function(data){
-            const perfil = JSON.parse(data)
-            const {nombres,apellidos,rol,foto} = perfil 
-            let rolHeader = "";
-            console.log(rol)
-            if(rol === "1"){
-                rolHeader = "Administrador"
-            }else if(rol === "2"){
-                rolHeader = "Operador"
-            }else if(rol === "3"){
-                rolHeader = "Validador"
-            }
+async function cargar_perfil_2() {
+    try {
+        await cargar_perfil();
+        setTimeout(() => {
+            listar_registros();
+        }, 1000)
+    } catch (error) {
+        reject(error)
+    }
+}
 
-            $("#nameHeader").html(`${nombres.split(" ")[0]} ${apellidos.split(" ")[0]}`)
-            $("#rolHeader").html(`${rolHeader}`)
-            $("#imgHeader").html(`<img src="img/fotos/${foto}" alt="${nombres.split(" ")[0]} ${apellidos.split(" ")[0]}" class="rounded-circle"
-            data-lock-picture="img/fotos/${foto}" />`)
+const cargar_perfil = () => {
+    return new Promise((resolve, reject) => {
+        try {
+            $.ajax({
+                url: "controller/Usuario",
+                method: "POST",
+                data: { opcion: "obtener_perfil" },
+                success: function (data) {
+                    const perfil = JSON.parse(data)
+                    const { id, nombres, apellidos, rol, foto } = perfil
+                    let rolHeader = "";
+                    if (rol === "1") {
+                        rolHeader = "Administrador"
+                    } else if (rol === "2") {
+                        rolHeader = "Operador"
+                    } else if (rol === "3") {
+                        rolHeader = "Validador"
+                    }
+
+                    localStorage.setItem('usuario_id', id)
+
+                    $("#nameHeader").html(`${nombres.split(" ")[0]} ${apellidos.split(" ")[0]}`)
+                    $("#rolHeader").html(`${rolHeader}`)
+                    $("#imgHeader").html(`<img src="img/fotos/${foto}" alt="${nombres.split(" ")[0]} ${apellidos.split(" ")[0]}" class="rounded-circle"
+                data-lock-picture="img/fotos/${foto}" />`)
+
+                }
+            })
+            resolve();
+        } catch (error) {
+            reject(error);
         }
+
+    })
+}
+
+const firmarDocumento = () => {
+    $("#formFirmar").submit(function (e) {
+        e.preventDefault();
+
+        const data = $(this).serialize();
+        $.ajax({
+            url: "controller/Registro",
+            method: "POST",
+            data: data,
+            success: function (data) {
+                const response = JSON.parse(data);
+                if (response.status === 'error') {
+                    Swal.fire(
+                        response.status,
+                        response.message,
+                        'error'
+                    )
+                } else {
+                    Swal.fire(
+                        response.status,
+                        response.message,
+                        'success'
+                    )
+
+                    listar_registros();
+                    $.magnificPopup.close();
+                    $('#formFirmar').trigger('reset');
+
+                }
+            }
+        })
+    })
+}
+
+const logout = () => {
+    $("#logout").click(function (e) {
+        e.preventDefault();
+        localStorage.removeItem('usuario_id')
+        window.location = 'logout'
+    })
+}
+
+const filtrarRegistros = () => {
+    $("#filtroFecha").on('changeDate', function (e) {
+        listar_registros();
+    })
+}
+
+const obtener_validadores = () => {
+    $.ajax({
+        url: "controller/Usuario",
+        method: "POST",
+        data: { opcion: "listar_validadores" },
+        success: function (response) {
+            const data = JSON.parse(response);
+            let opciones = `<option value=''>-- Seleccione --</option>`;
+            data.map(v => {
+                opciones = opciones + `<option value='${v.id}'>${v.nombres} ${v.apellidos}</option>`
+            })
+            $("#usuario").html(opciones)
+            // const fecha = new Date();
+            // const fechaFormateada = `${fecha.getFullYear()}-${fecha.getUTCMonth()}-${fecha.getDay()}`;
+            // $("#filtroFecha").val(fechaFormateada)
+
+        }
+    })
+}
+
+const listar_registros = function () {
+
+    return new Promise((resolve, reject) => {
+        const filtro = $("#filtroFecha").val();
+        $.ajax({
+            url: 'controller/Registro',
+            method: "POST",
+            success: function (response) {
+                const data = JSON.parse(response);
+                let html = ``;
+                let position = parseInt(1)
+                const data2 = data.filter(r => r.fecha.split(" ")[0] === filtro)
+                if (data2.length > 0) {
+                    data2.map((registro) => {
+                        let firma_gdh = ``;
+                        let firma_destino = ``;
+                        const usuario_id = localStorage.getItem('usuario_id');
+                        if (registro.firma_gdh === '0') {
+                            firma_gdh = `<td width='30px' class="text-center">
+                        <button onclick="openModal({opcion:'firmar',modulo:'firmar',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Firmar</button>
+                        </td>`;
+                        } else {
+                            firma_gdh = `<td width='30px' class="text-center">
+                        <button class='btn btn-success' onclick="openModal({opcion:'firmado',modulo:'firmado_gdh',id:${registro.firma_gdh_usuario}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Firmardo</button>
+                        </td>`;
+                        }
+
+                        if (registro.firma_destino === '0') {
+                            if (registro.usuario_id === usuario_id) {
+                                firma_destino = `<td width='30px' class="text-center">
+                            <button class='btn btn-secondary' onclick="openModal({opcion:'firmarDestino',modulo:'firmarDestino',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})">Firmar</button>
+                            </td>`;
+                            } else {
+                                firma_destino = `<td width='30px' class="text-center"><button class='btn btn-secondary' disabled='true'>Pendiente</button></td>`;
+                            }
+                        } else {
+                            firma_destino = `<td width='30px' class="text-center">
+                        <button class='btn btn-success' onclick="openModal({opcion:'firmadoDestino',modulo:'firmadoDestino',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})"  >Firmardo</button>
+                        </td>`;
+                        }
+
+
+
+                        html = html + `
+                    <tr> <td class='text-center'>${registro.id}</td><td class='d-none'>${registro.usuario_id}</td><td>${registro.promotor}</td><td>${registro.tipo}</td> <td>${registro.indicativo}</td><td >${registro.fecha.split(" ")[0]}</td>
+                    <td>${registro.clasificacion}</td><td>${registro.asunto}</td> <td>${registro.recibido}</td>${firma_gdh}<td class='d-none'>${registro.firma_gdh_fecha}</td><td class='d-none'>${registro.firma_gdh_usuario}</td><td class='d-none'>${registro.firma_destino_fecha}</td>${firma_destino}</tr>`;
+                        position++
+                    })
+
+
+                } else {
+                    html = html + `<tr><td class='text-center' colspan='10'>No se encontraron resultados</td></tr>`;
+                }
+
+                $("#table-registros").html(html);
+
+            }
+        })
+    })
+
+}
+
+const store_registros = function () {
+    $('#formRegistros').submit(function (e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: 'controller/Registro',
+            method: 'POST',
+            data: data,
+            success: function (data) {
+
+                const response = JSON.parse(data);
+
+                if (response.status === 'error') {
+                    Swal.fire(
+                        response.status,
+                        response.message,
+                        'error'
+                    )
+                } else {
+                    Swal.fire(
+                        response.status,
+                        response.message,
+                        'success'
+                    )
+
+                    listar_registros();
+                    $.magnificPopup.close();
+                    $('#formRegistros').trigger('reset');
+
+                }
+            }
+        })
     })
 }
 
@@ -49,8 +250,8 @@ const obtener_perfil = () => {
     $.ajax({
         url: "controller/Usuario",
         method: "POST",
-        data: {opcion: 'obtener_perfil'},
-        success: function(data){
+        data: { opcion: 'obtener_perfil' },
+        success: function (data) {
             const perfil = JSON.parse(data);
             $("#usuario").val(perfil.usuario)
             $("#nombres").val(perfil.nombres)
@@ -78,7 +279,7 @@ const editar_perfil = () => {
             success: function (data) {
 
                 const response = JSON.parse(data);
-                
+
                 if (response.status === 'error') {
                     Swal.fire(
                         response.status,
@@ -151,7 +352,7 @@ const store_usuarios = function () {
             success: function (data) {
 
                 const response = JSON.parse(data);
-                
+
                 if (response.status === 'error') {
                     Swal.fire(
                         response.status,

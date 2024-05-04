@@ -39,7 +39,7 @@
                                 class="bx bx-user-circle"></i> Mi perfil</a>
                     </li>
                     <li>
-                        <a role="menuitem" tabindex="-1" href="logout"><i class="bx bx-power-off"></i>
+                        <a id='logout' role="menuitem" tabindex="-1" href="#"><i class="bx bx-power-off"></i>
                             Cerrar Sesión</a>
                     </li>
                 </ul>

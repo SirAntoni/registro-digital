@@ -11,7 +11,7 @@ const login = () => {
             method: 'POST',
             data: data,
             success: function(data){
-                console.log(data)
+                
                 var response = JSON.parse(data);
                 if (response.status == "success") {
                     window.location = response.url;

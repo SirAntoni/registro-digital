@@ -82,14 +82,18 @@
 		$(function() {
 			$('[data-plugin-datepicker]').each(function() {
 				var $this = $( this ),
-					opts = {};
+					opts = {
+						format:'yyyy-mm-dd',
+						todayHighlight: true,
+						autoclose:true
+					}
 
-				var pluginOptions = $this.data('plugin-options');
-				if (pluginOptions)
-					opts = pluginOptions;
-
+				const fecha = new Date()
+				const fechaFormateada = `${fecha.getFullYear()}-${(fecha.getMonth() + 1).toString().padStart(2,'0')}-${(fecha.getDate()).toString().padStart(2,'0')}`;
+				$("#filtroFecha").val(fechaFormateada);
 				$this.themePluginDatePicker(opts);
 			});
+			
 		});
 
 	}

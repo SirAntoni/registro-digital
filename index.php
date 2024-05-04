@@ -127,16 +127,6 @@ if (isset($_GET['view']) && $_GET['view'] === 'usuarios' && $_SESSION['rol'] !==
 	<script src="js/theme.init.js"></script>
 
 	<!-- Specific Page Vendor -->
-	<script src="vendor/select2/js/select2.js"></script>
-	<script src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
-	<script src="vendor/datatables/media/js/dataTables.bootstrap5.min.js"></script>
-	<script src="vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
-	<script src="vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
-	<script src="vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
-	<script src="vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
-	<script src="vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
-	<script src="vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
-	<script src="vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
 	<script src="vendor/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -147,11 +137,6 @@ if (isset($_GET['view']) && $_GET['view'] === 'usuarios' && $_SESSION['rol'] !==
 	<script src="js/custom.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/modals.js"></script>
-
-	<!-- Examples -->
-	<script src="js/examples/examples.datatables.default.js"></script>
-	<script src="js/examples/examples.datatables.row.with.details.js"></script>
-	<script src="js/examples/examples.datatables.tabletools.js"></script>
 
 </body>
 

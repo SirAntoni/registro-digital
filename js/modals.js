@@ -10,8 +10,82 @@ function openModal(data) {
 
     if (modulo)
         switch (opcion) {
+            case 'firmar':
+                titulo = `Firmar documento`;
+                btnText = `Firmar`;
+                items = {
+                    src: '#modalFirmar',
+                    type: 'inline'
+                }
+
+                datos = obtenerDataTable(tabla, posicion)
+
+                if (modulo === 'firmar') {
+                    $(".id").val(datos[0])
+                }
+
+                break;
+            case 'firmarDestino':
+                titulo = `Firmar documento`;
+                btnText = `Firmar`;
+                items = {
+                    src: '#modalFirmar',
+                    type: 'inline'
+                }
+
+                datos = obtenerDataTable(tabla, posicion)
+
+                if (modulo === 'firmarDestino') {
+                    $(".id").val(datos[0])
+                }
+
+                break;
+            case 'firmado':
+                titulo = `Detalle de firma`;
+                items = {
+                    src: '#modalFirmado',
+                    type: 'inline'
+                }
+
+                datos = obtenerDataTable(tabla, posicion)
+                $("#fechaFirma").text(datos[10])
+
+                $.ajax({
+                    url: "controller/Usuario",
+                    method: "POST",
+                    data: { id: datos[11], opcion: "obtener_perfil_firma" },
+                    success: function (response) {
+                        const data = JSON.parse(response);
+                        $("#nameFirma").text(`${data.nombres.split(" ")[0]} ${data.apellidos.split(" ")[0]}`)
+                        $("#imgFirma").html(`<img width="75px" src="./img/firmas/${data.firma}" alt="${data.nombres} ${data.apellidos}">`)
+                    }
+                })
+
+                break;
+            case 'firmadoDestino':
+                titulo = `Detalle de firma`;
+                items = {
+                    src: '#modalFirmado',
+                    type: 'inline'
+                }
+
+                datos = obtenerDataTable(tabla, posicion)
+                $("#fechaFirma").text(datos[12])
+                console.log(datos)
+                $.ajax({
+                    url: "controller/Usuario",
+                    method: "POST",
+                    data: { id: datos[1], opcion: "obtener_perfil_firma" },
+                    success: function (response) {
+                        const data = JSON.parse(response);
+                        $("#nameFirma").text(`${data.nombres.split(" ")[0]} ${data.apellidos.split(" ")[0]}`)
+                        $("#imgFirma").html(`<img width="75px" src="./img/firmas/${data.firma}" alt="${data.nombres} ${data.apellidos}">`)
+                    }
+                })
+
+                break;
             case 'agregar':
-                titulo = `Registrar ${modulo}`;
+                titulo = `Crear ${modulo}`;
                 btnText = `Registrar`;
                 if (modulo === 'usuario') {
                     $("#usuario").prop('disabled', false);

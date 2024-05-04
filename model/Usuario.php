@@ -56,10 +56,21 @@ class Usuarios extends Conectar
 
     }
 
+    public function listar_validadores()
+    {
+
+        $sql = "SELECT id,nombres,apellidos FROM usuarios WHERE rol = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1,3);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
     public function obtener_perfil($id)
     {
 
-        $sql = "SELECT usuario,nombres,apellidos,foto,firma,rol FROM usuarios WHERE id = ? LIMIT 1";
+        $sql = "SELECT id,usuario,nombres,apellidos,foto,firma,rol FROM usuarios WHERE id = ? LIMIT 1";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1,$id);
         $sql->execute();
@@ -198,7 +209,6 @@ class Usuarios extends Conectar
 
         return $response;
     }
-
     public function editar_usuario($id, $usuario, $contrasena, $nombres, $apellidos, $rol, $foto, $firma, $estado, $archivoFoto, $archivoFirma)
     {
 

@@ -60,8 +60,14 @@ switch ($opcion) {
     case 'obtener_perfil':
         echo json_encode($usuarios->obtener_perfil($_SESSION['id']));
         break;
+    case 'obtener_perfil_firma':
+        echo json_encode($usuarios->obtener_perfil($id));
+        break;
     case 'editar_perfil':
-        echo json_encode($usuarios->editar_perfil($_SESSION['id'],$contrasena,$nombres,$apellidos,$foto,$firma,$archivoFoto,$archivoFirma));
+        echo json_encode($usuarios->editar_perfil($_SESSION['id'], $contrasena, $nombres, $apellidos, $foto, $firma, $archivoFoto, $archivoFirma));
+        break;
+    case 'listar_validadores':
+        echo json_encode($usuarios->listar_validadores());
         break;
     default:
         echo json_encode($usuarios->listar_usuarios());
