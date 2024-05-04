@@ -154,7 +154,7 @@ const listar_registros = function () {
     return new Promise((resolve, reject) => {
         const filtro = $("#filtroFecha").val();
         $.ajax({
-            url: 'controller/Registro',
+            url: 'controller/Registro.php',
             method: "POST",
             success: function (response) {
                 const data = JSON.parse(response);
