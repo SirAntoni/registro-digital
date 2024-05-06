@@ -18,7 +18,17 @@
                                     </span>
                                     <input id='filtroFecha' type="text" data-plugin-datepicker
                                         data-plugin-options="{format:'yyyy-mm-dd'}" class="form-control">
+                                        
                                 </div>
+                                
+                                
+                            </div>
+                            <div class="col-lg-6">
+                                <select class="form-control mb-3" id="filtrofirma">
+                                    <option>Seleccionar</option>
+                                    <option>Firmados</option>
+                                    <option>Pendientes</option>
+                                </select>
                             </div>
                         </div>
                     </div>
