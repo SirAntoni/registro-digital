@@ -14,6 +14,7 @@ $(function () {
         obtener_validadores();
         filtrarRegistros();
         firmarDocumento();
+        filtrarPendientes();
 
     } else {
         cargar_perfil();
@@ -33,6 +34,12 @@ $(function () {
 
 
 });
+
+const filtrarPendientes = () => {
+    $("#filtroEstados").on("change", function () {
+        listar_registros();
+    })
+}
 
 async function cargar_perfil_2() {
     try {
@@ -160,7 +167,16 @@ const listar_registros = function () {
                 const data = JSON.parse(response);
                 let html = ``;
                 let position = parseInt(1)
-                const data2 = data.filter(r => r.fecha.split(" ")[0] === filtro)
+
+                const filtroEstados = $("#filtroEstados").val();
+                let data2 = [];
+
+                if (filtroEstados !== "") {
+                    data2 = data.filter(r => r.firma_destino === filtroEstados);
+                } else {
+                    data2 = data.filter(r => r.fecha.split(" ")[0] === filtro)
+                }
+
                 if (data2.length > 0) {
                     data2.map((registro) => {
                         let firma_gdh = ``;

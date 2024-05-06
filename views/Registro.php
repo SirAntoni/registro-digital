@@ -24,10 +24,10 @@
                                 
                             </div>
                             <div class="col-lg-6">
-                                <select class="form-control mb-3" id="filtrofirma">
-                                    <option>Seleccionar</option>
-                                    <option>Firmados</option>
-                                    <option>Pendientes</option>
+                                <select class="form-control mb-3" id="filtroEstados">
+                                    <option value="">Seleccionar</option>
+                                    <option value="1">Firmados</option>
+                                    <option value="0">Pendientes</option>
                                 </select>
                             </div>
                         </div>
