@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <?php if ($_SESSION['rol'] === "2") { ?>
+                    <?php if ($_SESSION['rol'] === "1") { ?>
                         <div class="col-md-6 text-end">
                             <button onclick="openModal({opcion:'agregar',modulo:'registro'})"
                                 class='modal-form btn btn-sm btn-primary mb-3'>Crear registro</button>
