@@ -102,8 +102,8 @@
                                     <label for="promotor">Promotor</label>                                 
                                     <select name="promotor" id="promotor" class='form-control'>
                                         <option value='1'>Seleccionar Promotor</option>
-                                        <option value='2'>DEICI</option>
-                                        <option value='3'>DIE</option>
+                                        <option value='DEICI'>DEICI</option>
+                                        <option value='DIE'>DIE</option>
                                     </select>
                                 </div>
                             </div>
@@ -112,10 +112,10 @@
                                     <label for="tipo">Tipo</label>
                                     <select name="tipo" id="tipo" class='form-control'>
                                         <option value='1'>Seleccionar Tipo</option>
-                                        <option value='2'>FAX/M</option>
-                                        <option value='3'>O/M</option>
-                                        <option value='4'>ODB</option>
-                                        <option value='5'>PDI</option>
+                                        <option value='FAX/M<'>FAX/M</option>
+                                        <option value='O/M'>O/M</option>
+                                        <option value='ODB'>ODB</option>
+                                        <option value='PDI'>PDI</option>
                                     </select>
                                 </div>
                             </div>
@@ -131,8 +131,8 @@
                                     <label for="clasificacion">Clasificación</label>
                                     <select name="clasificacion" id="clasificacion" class='form-control'>
                                         <option value='1'>Seleccionar Clasificación</option>
-                                        <option value='2'>R</option>
-                                        <option value='3'>S</option>
+                                        <option value='R'>R</option>
+                                        <option value='S'>S</option>
                                     </select>
                                 </div>
                             </div>
