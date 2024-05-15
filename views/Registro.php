@@ -99,15 +99,24 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group mb-2">
-                                    <label for="promotor">Promotor</label>
-                                    <input type="text" name='promotor' class="form-control" id="promotor"
-                                        placeholder="Promotor">
+                                    <label for="promotor">Promotor</label>                                 
+                                    <select name="promotor" id="promotor" class='form-control'>
+                                        <option value='1'>Seleccionar Promotor</option>
+                                        <option value='2'>DEICI</option>
+                                        <option value='3'>DIE</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group mb-2">
                                     <label for="tipo">Tipo</label>
-                                    <input type="text" name='tipo' class="form-control" id="tipo" placeholder="Tipo">
+                                    <select name="tipo" id="tipo" class='form-control'>
+                                        <option value='1'>Seleccionar Tipo</option>
+                                        <option value='2'>FAX/M</option>
+                                        <option value='3'>O/M</option>
+                                        <option value='4'>ODB</option>
+                                        <option value='5'>PDI</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -120,8 +129,11 @@
                             <div class="col-sm-4">
                                 <div class="form-group mb-2">
                                     <label for="clasificacion">Clasificación</label>
-                                    <input type="text" name='clasificacion' class="form-control" id="clasificacion"
-                                        placeholder="clasificación">
+                                    <select name="clasificacion" id="clasificacion" class='form-control'>
+                                        <option value='1'>Seleccionar Clasificación</option>
+                                        <option value='2'>R</option>
+                                        <option value='3'>S</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-sm-4">
