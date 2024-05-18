@@ -25,19 +25,25 @@ class Registros extends Conectar
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function crear_registro($usuario, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto)
+    public function crear_registro($documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto)
     {
-        if (empty($usuario) || empty($promotor) || empty($tipo) || empty($indicativo) || empty($clasificacion) || empty($recibido) || empty($asunto))
+        
+        if (empty($documento) || empty($promotor) || empty($tipo) || empty($indicativo) || empty($clasificacion) || empty($recibido) || empty($asunto))
             return [
                 "status" => "error",
                 "message" => "Verifique los campos vacios."
             ];
 
-        $sql = "INSERT INTO registros (usuario_id,promotor,tipo,indicativo,fecha,clasificacion,asunto,recibido,updated_at) VALUES(?,?,?,?,now(),?,?,?,now())";
+        $sql = "INSERT INTO registros (documento,promotor,tipo,indicativo,fecha,clasificacion,asunto,recibido,updated_at) VALUES(?,?,?,?,now(),?,?,?,now())";
+
+
+        $nombreDocumento = uniqid() . "-" . $_FILES["documento"]['name'];
+        $ruta = "../documentos/" . $nombreDocumento;
+        move_uploaded_file($_FILES["documento"]['tmp_name'], $ruta);
 
         $sql = $this->db->prepare($sql);
 
-        $sql->bindValue(1, $usuario);
+        $sql->bindValue(1, $nombreDocumento);
         $sql->bindValue(2, $promotor);
         $sql->bindValue(3, $tipo);
         $sql->bindValue(4, $indicativo);

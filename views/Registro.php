@@ -18,10 +18,10 @@
                                     </span>
                                     <input id='filtroFecha' type="text" data-plugin-datepicker
                                         data-plugin-options="{format:'yyyy-mm-dd'}" class="form-control">
-                                        
+
                                 </div>
-                                
-                                
+
+
                             </div>
                             <div class="col-lg-6">
                                 <select class="form-control mb-3" id="filtroEstados">
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <?php if ($_SESSION['rol'] === "1") { ?>
+                    <?php if ($_SESSION['rol'] === "2") { ?>
                         <div class="col-md-6 text-end">
                             <button onclick="openModal({opcion:'agregar',modulo:'registro'})"
                                 class='modal-form btn btn-sm btn-primary mb-3'>Crear registro</button>
@@ -58,7 +58,7 @@
                                 <th class='d-none'>Firma gdh usuario</th>
                                 <th class='d-none'>F. Destino fecha</th>
                                 <th width='100px'>F. Destino</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody id='table-registros' style='vertical-align:middle'>
@@ -91,15 +91,27 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group mb-2">
-                                    <label for="validador">Validador</label>
-                                    <select name="usuario" id="usuario" class='form-control'>
-                                        <option value='1'>Asignar validador</option>
-                                    </select>
+                                    <label rol="foto">Cargar Documento</label>
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                        <div class="input-append">
+                                            <div class="uneditable-input">
+                                                <span class="fileupload-preview"></span>
+                                            </div>
+                                            <span class="btn btn-default btn-file">
+                                                <span class="fileupload-exists"><i class='bx bx-refresh'></i></span>
+                                                <span class="fileupload-new"><i class='bx bxs-folder-open'></i></span>
+                                                <input type="file" name='documento' id='documento' />
+                                                <input type="hidden" name='archivoDocumento' id='archivoDocumento' value="" />
+                                            </span>
+                                            <a href="#" class="btn btn-default fileupload-exists"
+                                                data-dismiss="fileupload"><i class='bx bxs-trash'></i></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group mb-2">
-                                    <label for="promotor">Promotor</label>                                 
+                                    <label for="promotor">Promotor</label>
                                     <select name="promotor" id="promotor" class='form-control'>
                                         <option value=''>Seleccionar</option>
                                         <option value='DEICI'>DEICI</option>

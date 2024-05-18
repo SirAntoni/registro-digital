@@ -9,9 +9,10 @@ $(function () {
     logout();
 
     if (params.get('view') === "registros") {
+
         cargar_perfil_2();
         store_registros();
-        obtener_validadores();
+        // obtener_validadores();
         filtrarRegistros();
         firmarDocumento();
         filtrarPendientes();
@@ -19,6 +20,8 @@ $(function () {
     } else {
         cargar_perfil();
     }
+
+
 
     if (params.get('view') === "usuarios") {
         listar_usuarios();
@@ -34,6 +37,24 @@ $(function () {
 
 
 });
+
+
+
+const validarDocumento = () => {
+    const fileInput = document.getElementById('documento');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('Por favor, selecciona un archivo.');
+        return false;
+    }
+
+    if (file.type !== 'application/pdf') {
+        alert('Solo se permiten archivos PDF.');
+        event.preventDefault();
+        return false;
+    }
+}
 
 const filtrarPendientes = () => {
     $("#filtroEstados").on("change", function () {
@@ -72,6 +93,7 @@ const cargar_perfil = () => {
                     }
 
                     localStorage.setItem('usuario_id', id)
+                    localStorage.setItem('rol', rol)
 
                     $("#nameHeader").html(`${nombres.split(" ")[0]} ${apellidos.split(" ")[0]}`)
                     $("#rolHeader").html(`${rolHeader}`)
@@ -136,25 +158,26 @@ const filtrarRegistros = () => {
     })
 }
 
-const obtener_validadores = () => {
-    $.ajax({
-        url: "controller/Usuario",
-        method: "POST",
-        data: { opcion: "listar_validadores" },
-        success: function (response) {
-            const data = JSON.parse(response);
-            let opciones = `<option value=''>-- Seleccione --</option>`;
-            data.map(v => {
-                opciones = opciones + `<option value='${v.id}'>${v.nombres} ${v.apellidos}</option>`
-            })
-            $("#usuario").html(opciones)
-            // const fecha = new Date();
-            // const fechaFormateada = `${fecha.getFullYear()}-${fecha.getUTCMonth()}-${fecha.getDay()}`;
-            // $("#filtroFecha").val(fechaFormateada)
+// const obtener_validadores = () => {
+//     $.ajax({
+//         url: "controller/Usuario",
+//         method: "POST",
+//         data: { opcion: "listar_validadores" },
+//         success: function (response) {
+//             const data = JSON.parse(response);
 
-        }
-    })
-}
+//             let opciones = `<option value=''>-- Seleccione --</option>`;
+//             data.map(v => {
+//                 opciones = opciones + `<option value='${v.id}'>${v.nombres} ${v.apellidos}</option>`
+//             })
+//             $("#validadores").html(opciones)
+//             // const fecha = new Date();
+//             // const fechaFormateada = `${fecha.getFullYear()}-${fecha.getUTCMonth()}-${fecha.getDay()}`;
+//             // $("#filtroFecha").val(fechaFormateada)
+
+//         }
+//     })
+// }
 
 const listar_registros = function () {
 
@@ -182,29 +205,81 @@ const listar_registros = function () {
                         let firma_gdh = ``;
                         let firma_destino = ``;
                         const usuario_id = localStorage.getItem('usuario_id');
-                        if (registro.firma_gdh === '0') {
+                        const rol = localStorage.getItem('usuario_id');
+
+                        if (rol === "1") {
+
                             firma_gdh = `<td width='30px' class="text-center">
-                        <button onclick="openModal({opcion:'firmar',modulo:'firmar',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Firmar</button>
-                        </td>`;
-                        } else {
-                            firma_gdh = `<td width='30px' class="text-center">
-                        <button class='btn btn-success' onclick="openModal({opcion:'firmado',modulo:'firmado_gdh',id:${registro.firma_gdh_usuario}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Firmardo</button>
-                        </td>`;
+                            <button onclick="openModal({opcion:'firmar',modulo:'firmar',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Decretar</button>
+                            </td>`;
+
+                            firma_destino = `<td width='30px' class="text-center"><button class='btn btn-secondary' disabled='true'>Pendiente</button></td>`;
+
+                            if (registro.firma_gdh === '1') {
+                                firma_gdh = `<td width='30px' class="text-center">
+                                <button class='btn btn-success' onclick="openModal({opcion:'firmado',modulo:'firmado_gdh',id:${registro.firma_gdh_usuario}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Decretado</button>
+                                </td>`;
+                            }
+
+                            if (registro.firma_destino === "1") {
+                                firma_destino = `<td width='30px' class="text-center">
+                            <button class='btn btn-success' onclick="openModal({opcion:'firmadoDestino',modulo:'firmadoDestino',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})"  >Firmardo</button>
+                            </td>`;
+                            }
+
+
                         }
 
-                        if (registro.firma_destino === '0') {
-                            if (registro.usuario_id === usuario_id) {
-                                firma_destino = `<td width='30px' class="text-center">
-                            <button class='btn btn-secondary' onclick="openModal({opcion:'firmarDestino',modulo:'firmarDestino',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})">Firmar</button>
+                        if (rol === "2") {
+
+                            firma_gdh = `<td width='30px' class="text-center"><button class='btn btn-secondary' disabled='true'>Pendiente</button></td>`;
+                            firma_destino = `<td width='30px' class="text-center"><button class='btn btn-secondary' disabled='true'>Pendiente</button></td>`;
+
+                            if (registro.firma_gdh === "1") {
+                                firma_gdh = `<td width='30px' class="text-center">
+                                <button class='btn btn-success' onclick="openModal({opcion:'firmado',modulo:'firmado_gdh',id:${registro.firma_gdh_usuario}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Decretado</button>
+                                </td>`;
+                            }
+
+                            if (registro.firma_destino === "1") {
+                                firma_gdh = `<td width='30px' class="text-center">
+                                <button class='btn btn-success' onclick="openModal({opcion:'firmado',modulo:'firmado_gdh',id:${registro.firma_gdh_usuario}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Firmado</button>
+                                </td>`;
+                            }
+
+                        }
+
+                        if (rol === "3") {
+
+                            if (registro.firma_gdh === '0') {
+                                firma_gdh = `<td width='30px' class="text-center">
+                            <button onclick="openModal({opcion:'firmar',modulo:'firmar',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Firmar</button>
                             </td>`;
                             } else {
-                                firma_destino = `<td width='30px' class="text-center"><button class='btn btn-secondary' disabled='true'>Pendiente</button></td>`;
+                                firma_gdh = `<td width='30px' class="text-center">
+                            <button class='btn btn-success' onclick="openModal({opcion:'firmado',modulo:'firmado_gdh',id:${registro.firma_gdh_usuario}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Firmardo</button>
+                            </td>`;
                             }
-                        } else {
-                            firma_destino = `<td width='30px' class="text-center">
-                        <button class='btn btn-success' onclick="openModal({opcion:'firmadoDestino',modulo:'firmadoDestino',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})"  >Firmardo</button>
-                        </td>`;
+
+                            if (registro.firma_destino === '0') {
+                                if (registro.usuario_id === usuario_id) {
+                                    firma_destino = `<td width='30px' class="text-center">
+                                <button class='btn btn-secondary' onclick="openModal({opcion:'firmarDestino',modulo:'firmarDestino',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})">Firmar</button>
+                                </td>`;
+                                } else {
+                                    firma_destino = `<td width='30px' class="text-center"><button class='btn btn-secondary' disabled='true'>Pendiente</button></td>`;
+                                }
+                            } else {
+                                firma_destino = `<td width='30px' class="text-center">
+                            <button class='btn btn-success' onclick="openModal({opcion:'firmadoDestino',modulo:'firmadoDestino',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})"  >Firmardo</button>
+                            </td>`;
+                            }
+
+
                         }
+
+
+
 
 
 
@@ -230,11 +305,18 @@ const listar_registros = function () {
 const store_registros = function () {
     $('#formRegistros').submit(function (e) {
         e.preventDefault();
-        const data = $(this).serialize();
+
+        if (validarDocumento() === false) return;
+
+        const data = new FormData($("#formRegistros")[0])
+
         $.ajax({
             url: 'controller/Registro',
             method: 'POST',
             data: data,
+            contentType: false,
+            cache: false,
+            processData: false,
             success: function (data) {
 
                 const response = JSON.parse(data);
