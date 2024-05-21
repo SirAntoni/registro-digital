@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['id']))
+if (!isset($_SESSION['id']) || !isset($_GET['userId']) || !isset($_GET['documentId']))
 	header("Location:../login");
 
 ?>
