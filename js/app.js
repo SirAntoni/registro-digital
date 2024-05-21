@@ -292,7 +292,7 @@ const listar_registros = function () {
 
                         html = html + `
                     <tr> <td class='text-center'>${registro.id}</td><td class='d-none'>${registro.usuario_id}</td><td>${registro.promotor}</td><td>${registro.tipo}</td> <td>${registro.indicativo}</td><td >${registro.fecha.split(" ")[0]}</td>
-                    <td>${registro.clasificacion}</td><td>${registro.asunto}</td> <td>${registro.recibido}</td><td class='text-center' width='100px'><a href="./pdf/view?file=documentos/${registro.documento}"><i class='bx bxs-file-pdf bx-md'></i></a></td>${firma_gdh}<td class='d-none'>${registro.firma_gdh_fecha}</td><td class='d-none'>${registro.firma_gdh_usuario}</td><td class='d-none'>${registro.firma_destino_fecha}</td>${firma_destino}</tr>`;
+                    <td>${registro.clasificacion}</td><td>${registro.asunto}</td> <td>${registro.recibido}</td><td class='text-center' width='100px'><a href="./pdf/view?file=documentos/${registro.documento}" target='_blank'><i class='bx bxs-file-pdf bx-md'></i></a></td>${firma_gdh}<td class='d-none'>${registro.firma_gdh_fecha}</td><td class='d-none'>${registro.firma_gdh_usuario}</td><td class='d-none'>${registro.firma_destino_fecha}</td>${firma_destino}</tr>`;
                         position++
                     })
 
