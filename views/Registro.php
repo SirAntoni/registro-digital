@@ -53,6 +53,7 @@
                                 <th>Clasif.</th>
                                 <th>Asunto</th>
                                 <th>Recibido</th>
+                                <th>Documento</th>
                                 <th width='100px'>Firma / GFH</th>
                                 <th class='d-none'>Firma gdh fecha</th>
                                 <th class='d-none'>Firma gdh usuario</th>
@@ -124,7 +125,7 @@
                                     <label for="tipo">Tipo</label>
                                     <select name="tipo" id="tipo" class='form-control'>
                                         <option value=''>Seleccionar</option>
-                                        <option value='FAX/M<'>FAX/M</option>
+                                        <option value='FAX/M'>FAX/M</option>
                                         <option value='O/M'>O/M</option>
                                         <option value='ODB'>ODB</option>
                                         <option value='PDI'>PDI</option>

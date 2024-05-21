@@ -27,7 +27,7 @@ class Registros extends Conectar
 
     public function crear_registro($documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto)
     {
-        
+
         if (empty($documento) || empty($promotor) || empty($tipo) || empty($indicativo) || empty($clasificacion) || empty($recibido) || empty($asunto))
             return [
                 "status" => "error",
@@ -38,7 +38,7 @@ class Registros extends Conectar
 
 
         $nombreDocumento = uniqid() . "-" . $_FILES["documento"]['name'];
-        $ruta = "../documentos/" . $nombreDocumento;
+        $ruta = "../pdf/documentos/" . $nombreDocumento;
         move_uploaded_file($_FILES["documento"]['tmp_name'], $ruta);
 
         $sql = $this->db->prepare($sql);
