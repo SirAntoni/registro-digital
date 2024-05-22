@@ -2,12 +2,12 @@
 session_start();
 #validacion
 if (!isset($_SESSION['id']) )
-  header("Location:../login");
+  header("Location:../security");
 
 if ($_SESSION['rol'] === "3") {
 
   if (!isset($_GET['userId']) || empty($_GET['userId']) || $_SESSION['id'] !== $_GET['userId']){
-    header("Location:../login");
+    header("Location:../security");
   }
    
   
