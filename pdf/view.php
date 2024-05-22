@@ -1,7 +1,7 @@
 <?php
 session_start();
-
-if (!isset($_SESSION['id']) || !isset($_GET['userId']) || !isset($_GET['documentId']))
+#validacion
+if (!isset($_SESSION['id']) || !isset($_GET['userId']) || !isset($_GET['documentId']) || empty($_GET['userId']) || empty($_GET['documentId']))
 	header("Location:../login");
 
 ?>
