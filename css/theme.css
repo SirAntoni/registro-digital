@@ -17533,9 +17533,9 @@ p.drop-caps.drop-caps-style-2:first-letter {
 		width: 1px;
 	}
 
-	.userbox .profile-picture {
+	/* .userbox .profile-picture {
 		display: none;
-	}
+	} */
 
 	.userbox .dropdown-menu {
 		left: -5px !important;
