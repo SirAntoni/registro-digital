@@ -54,17 +54,22 @@
                                 <th>Asunto</th>
                                 <th>Recibido</th>
                                 <th>Documento</th>
-                                <th width='100px'>Firma / GFH</th>
+                                <th class='d-none'>Decreto</th>
+                                <th class='d-none'>obs Decreto</th>
+                                <th class='d-none'>obs Validador</th>
+                                <th width='100px'>F. Destino</th>
                                 <th class='d-none'>Firma gdh fecha</th>
                                 <th class='d-none'>Firma gdh usuario</th>
                                 <th class='d-none'>F. Destino fecha</th>
-                                <th width='100px'>F. Destino</th>
+                                <th width='100px'>Firma / GFH</th>
+                               
+                                
 
                             </tr>
                         </thead>
                         <tbody id='table-registros' style='vertical-align:middle'>
                             <tr>
-                                <td class='text-center' colspan='10'>Cargando datos...</td>
+                                <td class='text-center' colspan='11'>Cargando datos...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -102,7 +107,8 @@
                                                 <span class="fileupload-exists"><i class='bx bx-refresh'></i></span>
                                                 <span class="fileupload-new"><i class='bx bxs-folder-open'></i></span>
                                                 <input type="file" name='documento' id='documento' />
-                                                <input type="hidden" name='archivoDocumento' id='archivoDocumento' value="" />
+                                                <input type="hidden" name='archivoDocumento' id='archivoDocumento'
+                                                    value="" />
                                             </span>
                                             <a href="#" class="btn btn-default fileupload-exists"
                                                 data-dismiss="fileupload"><i class='bx bxs-trash'></i></a>
@@ -186,29 +192,108 @@
         <header class="card-header">
             <h2 class="modalTitle card-title"></h2>
         </header>
-        <div class="card-body">
-            <div class="modal-wrapper">
-                <div class="modal-icon">
-                    <i class="fas fa-times-circle"></i>
-                </div>
-                <div class="modal-text">
-                    <h4 class="font-weight-bold text-dark">Firmar documento</h4>
-                    <p>¿Esta seguro que desea firmar el documento?</p>
+        <form id="formFirmar" class='form'>
+            <div class="card-body">
+                <input type="hidden" class='opcion' name='opcion'>
+                <input type="hidden" class='id' name='id'>
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group mb-2">
+                                    <label for="validadores">Validadores</label>
+                                    <select name="validador" id="validador" class='form-control'>
+                                        <option value=''>Seleccionar</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group mb-2">
+                                    <label for="decreto">Decreto</label>
+                                    <select name="decreto" id="decreto" class='form-control'>
+                                        <option value=''>Seleccionar</option>
+                                        <option value='Control'>Control</option>
+                                        <option value='Conocimiento'>Conocimiento</option>
+                                        <option value='Trámite'>Trámite</option>
+                                        <option value='Acciones adoptadas'>Acciones Adoptadas</option>
+                                        <option value='Completamiento'>Completamiento</option>
+                                        <option value='Estudio'>Estudio</option>
+                                        <option value='Archivo'>Archivo</option>
+                                        <option value='Distribución'>Distribución</option>
+                                        <option value='Urgente'>Urgente</option>
+                                        <option value='Cumplimiento'>Cumplimiento</option>
+                                        <option value='Coordinación'>Coordinación</option>
+                                        <option value='Análisis'>Análisis</option>
+                                        <option value='Respuesta'>Respuesta</option>
+                                        <option value='Recomendación'>Recomendación</option>
+                                        <option value='Informe Escrito'>Informe Escrito</option>
+                                        <option value='Informe Verbal'>Informe Verbal</option>
+                                        <option value='Acuse de recibo'>Acuse de recibo</option>
+                                        <option value='Muy urgente'>Muy urgente</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group mb-2">
+                                    <label for="observacion">Observación</label>
+                                    <textarea name="observacion" id="observacion" cols="30" rows="3"
+                                        class='form-control'></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <footer class="card-footer">
-            <div class="row">
-                <div class="col-md-12 text-end">
-                    <form id="formFirmar" class='form'>
-                        <input type="hidden" class='opcion' name='opcion'>
-                        <input type="hidden" class='id' name='id'>
+            <footer class="card-footer">
+                <div class="row">
+                    <div class="col-md-12 text-end">
                         <button type='submit' class="btnSubmit btn btn-success">Firmar</button>
                         <button class="btn btn-default modal-dismiss">Cancelar</button>
-                    </form>
+
+                    </div>
+                </div>
+            </footer>
+        </form>
+    </section>
+</div>
+
+<div id="modalFirmarDestino" class="modal-block modal-header-color modal-block-success mfp-hide zoom-anim-dialog">
+    <section class="card">
+        <header class="card-header">
+            <h2 class="modalTitle card-title"></h2>
+        </header>
+        <form id="formFirmarDestino" class='form'>
+            <div class="card-body">
+                <input type="hidden" class='opcion' name='opcion'>
+                <input type="hidden" class='id' name='id'>
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group mb-2">
+                                    <label for="observacion">Observación</label>
+                                    <textarea name="observacion" id="observacion" cols="30" rows="3"
+                                        class='form-control'></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </footer>
+            <footer class="card-footer">
+                <div class="row">
+                    <div class="col-md-12 text-end">
+                        <button type='submit' class="btnSubmit btn btn-success">Firmar</button>
+                        <button class="btn btn-default modal-dismiss">Cancelar</button>
+
+                    </div>
+                </div>
+            </footer>
+        </form>
     </section>
 </div>
 
@@ -218,24 +303,42 @@
             <h2 class="modalTitle card-title"></h2>
         </header>
         <div class="card-body">
-            <div class='table-responsive'>
-                <table id='tableDetalleFirma' class="table table-bordered table-responsive-md table-hover mb-0">
-                    <thead class='dark'>
-                        <tr>
-                            <th>Firmado</th>
-                            <th>Fecha</th>
-                            <th>Firma</th>
-                        </tr>
-                    </thead>
-                    <tbody id='table-detalle-firma'>
-                        <tr>
-                            <td style='vertical-align:middle;' id='nameFirma'>Antony Culqui</td>
-                            <td style='vertical-align:middle;' id='fechaFirma'></td>
-                            <td class='text-center' style='vertical-align:middle;' id='imgFirma'></td>
-                        </tr>
-                    </tbody>
-                </table>
+           
+        <div class="row">
+            <div class="col-md-12">
+                <p id="nombreRegistro"></p>
+                <p id="fechaDecretado"></p>
+                <p id="decreto"></p>
+                <p id="obsDecreto"></p>
             </div>
+        </div>
+        </div>
+        <footer class="card-footer">
+            <div class="row">
+                <div class="col-md-12 text-end">
+                    <form class='form'>
+                        <button class="btn btn-default modal-dismiss">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>
+
+<div id="modalFirmadoDestino" class="modal-block modal-header-color modal-block-primary mfp-hide zoom-anim-dialog">
+    <section class="card">
+        <header class="card-header">
+            <h2 class="modalTitle card-title"></h2>
+        </header>
+        <div class="card-body">
+           
+        <div class="row">
+            <div class="col-md-12">
+                <p id="nombreValidador"></p>
+                <p id="fechaValidador"></p>
+                <p id="obsValidador"></p>
+            </div>
+        </div>
         </div>
         <footer class="card-footer">
             <div class="row">

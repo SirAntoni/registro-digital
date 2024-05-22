@@ -11,6 +11,7 @@ class Registros extends Conectar
 
     public function listar_registros($id, $rol)
     {
+       
         if ($rol === '3') {
             $sql = "SELECT * FROM registros WHERE firma_gdh = ? AND usuario_id = ?";
             $sql = $this->db->prepare($sql);
@@ -22,6 +23,7 @@ class Registros extends Conectar
         }
        
         $sql->execute();
+        
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -60,29 +62,33 @@ class Registros extends Conectar
 
     }
 
-    public function firmar($id,$usuario){
+    public function firmar($id,$firma_gdh_usuario,$usuario_id,$decreto,$observacion){
 
-        $sql = "UPDATE registros SET firma_gdh = ?, firma_gdh_fecha = now(), firma_gdh_usuario = ? WHERE id = ?";
+        $sql = "UPDATE registros SET usuario_id = ?, decreto = ?, obs_admin = ?, firma_gdh = ?, firma_gdh_fecha = now(), firma_gdh_usuario = ? WHERE id = ?";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1,1);
-        $sql->bindValue(2,$usuario);
-        $sql->bindValue(3,$id);
+        $sql->bindValue(1,$usuario_id);
+        $sql->bindValue(2,$decreto);
+        $sql->bindValue(3,$observacion);
+        $sql->bindValue(4,1);
+        $sql->bindValue(5,$firma_gdh_usuario);
+        $sql->bindValue(6,$id);
 
         $sql->execute();
 
         return [
             "status" => "success",
-            "message" => "Documento firmado con exito"
+            "message" => "Documento decretado con exito"
         ];
 
     }
 
-    public function firmar_destino($id,$usuario){
+    public function firmar_destino($id,$observacion){
 
-        $sql = "UPDATE registros SET firma_destino = ?, firma_destino_fecha = now() WHERE id = ?";
+        $sql = "UPDATE registros SET firma_destino = ?, firma_destino_fecha = now(), obs_validador = ? WHERE id = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1,1);
-        $sql->bindValue(2,$id);
+        $sql->bindValue(2,$observacion);
+        $sql->bindValue(3,$id);
 
         $sql->execute();
 

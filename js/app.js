@@ -12,10 +12,11 @@ $(function () {
 
         cargar_perfil_2();
         store_registros();
-        // obtener_validadores();
+        obtener_validadores();
         filtrarRegistros();
         firmarDocumento();
         filtrarPendientes();
+        firmarDocumentoDestino();
 
     } else {
         cargar_perfil();
@@ -120,7 +121,39 @@ const cargar_perfil = () => {
 const firmarDocumento = () => {
     $("#formFirmar").submit(function (e) {
         e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: "controller/Registro",
+            method: "POST",
+            data: data,
+            success: function (data) {
+                const response = JSON.parse(data);
+                if (response.status === 'error') {
+                    Swal.fire(
+                        response.status,
+                        response.message,
+                        'error'
+                    )
+                } else {
+                    Swal.fire(
+                        response.status,
+                        response.message,
+                        'success'
+                    )
 
+                    listar_registros();
+                    $.magnificPopup.close();
+                    $('#formFirmar').trigger('reset');
+
+                }
+            }
+        })
+    })
+}
+
+const firmarDocumentoDestino = () => {
+    $("#formFirmarDestino").submit(function (e) {
+        e.preventDefault();
         const data = $(this).serialize();
         $.ajax({
             url: "controller/Registro",
@@ -165,26 +198,26 @@ const filtrarRegistros = () => {
     })
 }
 
-// const obtener_validadores = () => {
-//     $.ajax({
-//         url: "controller/Usuario",
-//         method: "POST",
-//         data: { opcion: "listar_validadores" },
-//         success: function (response) {
-//             const data = JSON.parse(response);
+const obtener_validadores = () => {
+    $.ajax({
+        url: "controller/Usuario",
+        method: "POST",
+        data: { opcion: "listar_validadores" },
+        success: function (response) {
+            const data = JSON.parse(response);
 
-//             let opciones = `<option value=''>-- Seleccione --</option>`;
-//             data.map(v => {
-//                 opciones = opciones + `<option value='${v.id}'>${v.nombres} ${v.apellidos}</option>`
-//             })
-//             $("#validadores").html(opciones)
-//             // const fecha = new Date();
-//             // const fechaFormateada = `${fecha.getFullYear()}-${fecha.getUTCMonth()}-${fecha.getDay()}`;
-//             // $("#filtroFecha").val(fechaFormateada)
+            let opciones = `<option value=''>-- Seleccione --</option>`;
+            data.map(v => {
+                opciones = opciones + `<option value='${v.id}'>${v.nombres} ${v.apellidos}</option>`
+            })
+            $("#validador").html(opciones)
+            // const fecha = new Date();
+            // const fechaFormateada = `${fecha.getFullYear()}-${fecha.getUTCMonth()}-${fecha.getDay()}`;
+            // $("#filtroFecha").val(fechaFormateada)
 
-//         }
-//     })
-// }
+        }
+    })
+}
 
 const listar_registros = function () {
 
@@ -209,6 +242,13 @@ const listar_registros = function () {
 
                 if (data2.length > 0) {
                     data2.map((registro) => {
+
+                        let url_document = `documentos/${registro.documento}`;
+
+                        if (registro.usuario_id !== null) {
+                            url_document = `documentos/${registro.documento}&userId=${registro.usuario_id}`;
+                        }
+
                         let firma_gdh = ``;
                         let firma_destino = ``;
                         const usuario_id = localStorage.getItem('usuario_id');
@@ -230,7 +270,7 @@ const listar_registros = function () {
 
                             if (registro.firma_destino === "1") {
                                 firma_destino = `<td width='30px' class="text-center">
-                            <button class='btn btn-success' onclick="openModal({opcion:'firmadoDestino',modulo:'firmadoDestino',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})"  >Firmardo</button>
+                            <button class='btn btn-success' onclick="openModal({opcion:'firmadoDestino',modulo:'firmadoDestino',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})"  >Recibido</button>
                             </td>`;
                             }
 
@@ -249,8 +289,8 @@ const listar_registros = function () {
                             }
 
                             if (registro.firma_destino === "1") {
-                                firma_gdh = `<td width='30px' class="text-center">
-                                <button class='btn btn-success' onclick="openModal({opcion:'firmado',modulo:'firmado_gdh',id:${registro.firma_gdh_usuario}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Firmado</button>
+                                firma_destino = `<td width='30px' class="text-center">
+                                <button class='btn btn-success' onclick="openModal({opcion:'firmadoDestino',modulo:'firmadoDestino',id:${registro.firma_gdh_usuario}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Recibido</button>
                                 </td>`;
                             }
 
@@ -258,47 +298,32 @@ const listar_registros = function () {
 
                         if (rol === "3") {
 
-                            if (registro.firma_gdh === '0') {
-                                firma_gdh = `<td width='30px' class="text-center">
-                            <button onclick="openModal({opcion:'firmar',modulo:'firmar',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Firmar</button>
+                            firma_gdh = `<td width='30px' class="text-center">
+                            <button class='btn btn-success' onclick="openModal({opcion:'firmado',modulo:'firmado_gdh',id:${registro.firma_gdh_usuario}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Decretado</button>
                             </td>`;
-                            } else {
-                                firma_gdh = `<td width='30px' class="text-center">
-                            <button class='btn btn-success' onclick="openModal({opcion:'firmado',modulo:'firmado_gdh',id:${registro.firma_gdh_usuario}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Firmardo</button>
-                            </td>`;
-                            }
 
                             if (registro.firma_destino === '0') {
-                                if (registro.usuario_id === usuario_id) {
-                                    firma_destino = `<td width='30px' class="text-center">
+                                firma_destino = `<td width='30px' class="text-center">
                                 <button class='btn btn-secondary' onclick="openModal({opcion:'firmarDestino',modulo:'firmarDestino',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})">Firmar</button>
                                 </td>`;
-                                } else {
-                                    firma_destino = `<td width='30px' class="text-center"><button class='btn btn-secondary' disabled='true'>Pendiente</button></td>`;
-                                }
                             } else {
                                 firma_destino = `<td width='30px' class="text-center">
-                            <button class='btn btn-success' onclick="openModal({opcion:'firmadoDestino',modulo:'firmadoDestino',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})"  >Firmardo</button>
+                            <button class='btn btn-success' onclick="openModal({opcion:'firmadoDestino',modulo:'firmadoDestino',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})"  >Recibido</button>
                             </td>`;
                             }
 
 
                         }
 
-
-
-
-
-
                         html = html + `
                     <tr> <td class='text-center'>${registro.id}</td><td class='d-none'>${registro.usuario_id}</td><td>${registro.promotor}</td><td>${registro.tipo}</td> <td>${registro.indicativo}</td><td >${registro.fecha.split(" ")[0]}</td>
-                    <td>${registro.clasificacion}</td><td>${registro.asunto}</td> <td>${registro.recibido}</td><td class='text-center' width='100px'><a href="./pdf/view?file=documentos/${registro.documento}&userId=${registro.usuario_id}&documentId=${registro.id}" target='_blank'><i class='bx bxs-file-pdf bx-md'></i></a></td>${firma_gdh}<td class='d-none'>${registro.firma_gdh_fecha}</td><td class='d-none'>${registro.firma_gdh_usuario}</td><td class='d-none'>${registro.firma_destino_fecha}</td>${firma_destino}</tr>`;
+                    <td>${registro.clasificacion}</td><td>${registro.asunto}</td> <td>${registro.recibido}</td><td class='text-center' width='100px'><a href="./pdf/view?file=${url_document}" target='_blank'><i class='bx bxs-file-pdf bx-md'></i></a></td><td class='d-none'>${registro.decreto}</td><td class='d-none'>${registro.obs_admin}</td><td class='d-none'>${registro.obs_validador}</td>${firma_gdh}<td class='d-none'>${registro.firma_gdh_fecha}</td><td class='d-none'>${registro.firma_gdh_usuario}</td><td class='d-none'>${registro.firma_destino_fecha}</td>${firma_destino}</tr>`;
                         position++
                     })
 
 
                 } else {
-                    html = html + `<tr><td class='text-center' colspan='10'>No se encontraron resultados</td></tr>`;
+                    html = html + `<tr><td class='text-center' colspan='11'>No se encontraron resultados</td></tr>`;
                 }
 
                 $("#table-registros").html(html);

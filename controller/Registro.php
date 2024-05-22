@@ -15,13 +15,15 @@ $clasificacion = '';
 $recibido = '';
 $asunto = '';
 $documento = '';
+$decreto = '';
+$observacion = '';
 
 if (isset($_POST['opcion']))
     $opcion = $_POST['opcion'];
 if (isset($_POST['id']))
     $id = $_POST['id'];
-if (isset($_POST['usuario']))
-    $usuario = $_POST['usuario'];
+if (isset($_POST['validador']))
+    $usuario = $_POST['validador'];
 if (isset($_POST['promotor']))
     $promotor = $_POST['promotor'];
 if (isset($_POST['tipo']))
@@ -36,16 +38,20 @@ if (isset($_POST['asunto']))
     $asunto = $_POST['asunto'];
 if (!empty($_FILES['documento']['name']))
     $documento = $_FILES['documento']['name'];
+if (isset($_POST['decreto']))
+    $decreto = $_POST['decreto'];
+if (isset($_POST['observacion']))
+    $observacion = $_POST['observacion'];
 
 switch ($opcion) {
     case 'agregar':
         echo json_encode($registros->crear_registro($documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto));
         break;
     case 'firmar':
-        echo json_encode($registros->firmar($id, $_SESSION['id']));
+        echo json_encode($registros->firmar($id, $_SESSION['id'],$usuario, $decreto, $observacion));
         break;
     case 'firmarDestino':
-        echo json_encode($registros->firmar_destino($id, $_SESSION['id']));
+        echo json_encode($registros->firmar_destino($id,$observacion));
         break;
     case 'eliminar':
         echo json_encode($usuarios->eliminar_usuario($id));

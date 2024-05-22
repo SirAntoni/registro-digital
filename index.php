@@ -122,8 +122,6 @@ if (isset($_GET['view']) && $_GET['view'] === 'usuarios' && $_SESSION['rol'] !==
 
 	<!-- Theme Base, Components and Settings -->
 	<script src="js/theme.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.worker.min.js"></script>
 
 
 	<!-- Theme Custom -->
@@ -143,40 +141,6 @@ if (isset($_GET['view']) && $_GET['view'] === 'usuarios' && $_SESSION['rol'] !==
 	<script src="js/custom.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/modals.js"></script>
-	<script>
-    const urlPdf = 'http://localhost/projects/registro-digital-cia-21/documentos/document.pdf'; // Reemplaza con la URL de tu PDF
-
-    // Cargar el documento PDF
-    pdfjsLib.getDocument(urlPdf).promise.then(pdfDoc_ => {
-        pdfDoc = pdfDoc_;
-        renderPage(1);
-    });
-
-    let pdfDoc = null;
-    let pageNum = 2;
-    const scale = 2;
-    const pdfViewer = document.getElementById('pdfViewer');
-
-    function renderPage(num) {
-        pdfDoc.getPage(num).then(page => {
-            const viewport = page.getViewport({ scale: scale });
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            const renderContext = {
-                canvasContext: ctx,
-                viewport: viewport
-            };
-
-            pdfViewer.appendChild(canvas);
-            page.render(renderContext).promise.then(() => {
-                console.log(`Page ${num} rendered`);
-            });
-        });
-    }
-</script>
 
 </body>
 

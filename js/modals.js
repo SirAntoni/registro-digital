@@ -11,8 +11,8 @@ function openModal(data) {
     if (modulo)
         switch (opcion) {
             case 'firmar':
-                titulo = `Firmar documento`;
-                btnText = `Firmar`;
+                titulo = `Decretar documento`;
+                btnText = `Decretar`;
                 items = {
                     src: '#modalFirmar',
                     type: 'inline'
@@ -29,7 +29,7 @@ function openModal(data) {
                 titulo = `Firmar documento`;
                 btnText = `Firmar`;
                 items = {
-                    src: '#modalFirmar',
+                    src: '#modalFirmarDestino',
                     type: 'inline'
                 }
 
@@ -48,29 +48,31 @@ function openModal(data) {
                 }
 
                 datos = obtenerDataTable(tabla, posicion)
-                $("#fechaFirma").text(datos[10])
-
+                console.log(datos)
                 $.ajax({
                     url: "controller/Usuario",
                     method: "POST",
-                    data: { id: datos[11], opcion: "obtener_perfil_firma" },
+                    data: { id: datos[15], opcion: "obtener_perfil_firma" },
                     success: function (response) {
                         const data = JSON.parse(response);
-                        $("#nameFirma").text(`${data.nombres.split(" ")[0]} ${data.apellidos.split(" ")[0]}`)
-                        $("#imgFirma").html(`<img width="75px" src="./img/firmas/${data.firma}" alt="${data.nombres} ${data.apellidos}">`)
+                        $("#nombreRegistro").html(`<strong>Nombres y Apellidos: </strong>${data.nombres.split(" ")[0]} ${data.apellidos.split(" ")[0]}`)
+                        $("#fechaDecretado").html(`<strong>Fecha: </strong> ${datos[14]}`)
+                        $("#decreto").html(`<strong>Decreto: </strong> ${datos[10]}`)
+                        $("#obsDecreto").html(`<strong>Observaciones: </strong> ${datos[11]}`)
+                        
                     }
+
                 })
 
                 break;
             case 'firmadoDestino':
                 titulo = `Detalle de firma`;
                 items = {
-                    src: '#modalFirmado',
+                    src: '#modalFirmadoDestino',
                     type: 'inline'
                 }
 
                 datos = obtenerDataTable(tabla, posicion)
-                $("#fechaFirma").text(datos[12])
                 console.log(datos)
                 $.ajax({
                     url: "controller/Usuario",
@@ -78,8 +80,9 @@ function openModal(data) {
                     data: { id: datos[1], opcion: "obtener_perfil_firma" },
                     success: function (response) {
                         const data = JSON.parse(response);
-                        $("#nameFirma").text(`${data.nombres.split(" ")[0]} ${data.apellidos.split(" ")[0]}`)
-                        $("#imgFirma").html(`<img width="75px" src="./img/firmas/${data.firma}" alt="${data.nombres} ${data.apellidos}">`)
+                        $("#nombreValidador").html(`<strong>Nombres y apellidos: </strong>${data.nombres.split(" ")[0]} ${data.apellidos.split(" ")[0]}`)
+                        $("#fechaValidador").html(`<strong>Fecha: </strong> ${datos[16]}`)
+                        $("#obsValidador").html(`<strong>Observaciones: </strong> ${datos[12]}`)
                     }
                 })
 
