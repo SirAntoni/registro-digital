@@ -8,10 +8,10 @@
 
                 <div class="row">
 
-                    <div class="col-md-6">
+                    <div class="col-md-8">
 
-                        <div class="form-group row pb-3">
-                            <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-4 mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <i class="fas fa-calendar-alt"></i>
@@ -23,17 +23,20 @@
 
 
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <select class="form-control mb-3" id="filtroEstados">
                                     <option value="">Seleccionar</option>
                                     <option value="1">Firmados</option>
                                     <option value="0">Pendientes</option>
                                 </select>
                             </div>
+                            <div class="col-lg-4 mb-3">
+                                <input type="text" class="form-control" placeholder="Asunto" id="filtrarAsunto">
+                            </div>
                         </div>
                     </div>
                     <?php if ($_SESSION['rol'] === "2") { ?>
-                        <div class="col-md-6 text-end">
+                        <div class="col-md-4 text-end">
                             <button onclick="openModal({opcion:'agregar',modulo:'registro'})"
                                 class='modal-form btn btn-sm btn-primary mb-3'>Crear registro</button>
                         </div>

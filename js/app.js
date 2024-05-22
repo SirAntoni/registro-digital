@@ -17,6 +17,7 @@ $(function () {
         firmarDocumento();
         filtrarPendientes();
         firmarDocumentoDestino();
+        filtrarAsunto();
 
     } else {
         cargar_perfil();
@@ -66,6 +67,13 @@ const validarDocumento = () => {
 
 const filtrarPendientes = () => {
     $("#filtroEstados").on("change", function () {
+        listar_registros();
+    })
+}
+
+const filtrarAsunto = () => {
+    $("#filtrarAsunto").on("keyup", function () {
+       
         listar_registros();
     })
 }
@@ -232,10 +240,17 @@ const listar_registros = function () {
                 let position = parseInt(1)
 
                 const filtroEstados = $("#filtroEstados").val();
+                const filtroAsunto = $("#filtrarAsunto").val();
                 let data2 = [];
 
                 if (filtroEstados !== "") {
                     data2 = data.filter(r => r.firma_destino === filtroEstados);
+                }else if(filtroAsunto !== ""){
+                    data2 = data.filter(r => {
+                        if(filtroAsunto == '') return r.asunto
+                        const regex = new RegExp(filtroAsunto, "i");
+                        return regex.test(r.asunto)
+                    });
                 } else {
                     data2 = data.filter(r => r.fecha.split(" ")[0] === filtro)
                 }
