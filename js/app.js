@@ -267,7 +267,7 @@ const listar_registros = function () {
                         let firma_gdh = ``;
                         let firma_destino = ``;
                         const usuario_id = localStorage.getItem('usuario_id');
-                        const rol = localStorage.getItem('usuario_id');
+                        const rol = localStorage.getItem('rol');
 
                         if (rol === "1") {
 
@@ -312,7 +312,6 @@ const listar_registros = function () {
                         }
 
                         if (rol === "3") {
-
                             firma_gdh = `<td width='30px' class="text-center">
                             <button class='btn btn-success' onclick="openModal({opcion:'firmado',modulo:'firmado_gdh',id:${registro.firma_gdh_usuario}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Decretado</button>
                             </td>`;
