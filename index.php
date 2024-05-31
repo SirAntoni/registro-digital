@@ -23,7 +23,7 @@ if (isset($_GET['view']) && $_GET['view'] === 'usuarios' && $_SESSION['rol'] !==
 	<meta name="author" content="okler.net">
 
 	<!-- Mobile Metas -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 	<!-- AJAX -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

@@ -354,3 +354,28 @@
         </footer>
     </section>
 </div>
+
+<div id="modalAsunto" class="modal-block modal-header-color modal-block-primary mfp-hide zoom-anim-dialog">
+    <section class="card">
+        <header class="card-header">
+            <h2 class="modalTitle card-title"></h2>
+        </header>
+        <div class="card-body">
+           
+        <div class="row">
+            <div class="col-md-12">
+                <p id="asuntoCompleto"></p>
+            </div>
+        </div>
+        </div>
+        <footer class="card-footer">
+            <div class="row">
+                <div class="col-md-12 text-end">
+                    <form class='form'>
+                        <button class="btn btn-default modal-dismiss">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>

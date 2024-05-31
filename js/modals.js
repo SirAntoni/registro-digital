@@ -59,11 +59,32 @@ function openModal(data) {
                         $("#fechaDecretado").html(`<strong>Fecha: </strong> ${datos[14]}`)
                         $("#decreto").html(`<strong>Decreto: </strong> ${datos[10]}`)
                         $("#obsDecreto").html(`<strong>Observaciones: </strong> ${datos[11]}`)
-                        
+
                     }
 
                 })
 
+                break;
+            case 'asuntoCompleto':
+                titulo = `Asunto`;
+                items = {
+                    src: '#modalAsunto',
+                    type: 'inline'
+                }
+
+                datos = obtenerDataTable(tabla, posicion)
+                $.ajax({
+                    url: "controller/Registro",
+                    method: "POST",
+                    data: { id, opcion: "obtener_registro" },
+                    success: function (response) {
+                        const data = JSON.parse(response);
+                        console.log(response)
+                        $("#asuntoCompleto").html(`${data.asunto}`)
+
+                    }
+
+                })
                 break;
             case 'firmadoDestino':
                 titulo = `Detalle de firma`;

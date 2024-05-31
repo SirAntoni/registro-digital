@@ -48,13 +48,13 @@ switch ($opcion) {
         echo json_encode($registros->crear_registro($documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto));
         break;
     case 'firmar':
-        echo json_encode($registros->firmar($id, $_SESSION['id'],$usuario, $decreto, $observacion));
+        echo json_encode($registros->firmar($id, $_SESSION['id'], $usuario, $decreto, $observacion));
         break;
     case 'firmarDestino':
-        echo json_encode($registros->firmar_destino($id,$observacion));
+        echo json_encode($registros->firmar_destino($id, $observacion));
         break;
-    case 'eliminar':
-        echo json_encode($usuarios->eliminar_usuario($id));
+    case 'obtener_registro':
+        echo json_encode($registros->obtener_registro($id));
         break;
     default:
         echo json_encode($registros->listar_registros($_SESSION['id'], $_SESSION['rol']));

@@ -11,20 +11,30 @@ class Registros extends Conectar
 
     public function listar_registros($id, $rol)
     {
-       
+
         if ($rol === '3') {
             $sql = "SELECT * FROM registros WHERE firma_gdh = ? AND usuario_id = ?";
             $sql = $this->db->prepare($sql);
-            $sql->bindValue(1,1);
-            $sql->bindValue(2,$id);
-        }else{
+            $sql->bindValue(1, 1);
+            $sql->bindValue(2, $id);
+        } else {
             $sql = "SELECT * FROM registros";
             $sql = $this->db->prepare($sql);
         }
-       
+
         $sql->execute();
-        
+
         return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function obtener_registro($id)
+    {
+
+        $sql = "SELECT * FROM registros WHERE id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
     public function crear_registro($documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto)
@@ -62,16 +72,17 @@ class Registros extends Conectar
 
     }
 
-    public function firmar($id,$firma_gdh_usuario,$usuario_id,$decreto,$observacion){
+    public function firmar($id, $firma_gdh_usuario, $usuario_id, $decreto, $observacion)
+    {
 
         $sql = "UPDATE registros SET usuario_id = ?, decreto = ?, obs_admin = ?, firma_gdh = ?, firma_gdh_fecha = now(), firma_gdh_usuario = ? WHERE id = ?";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1,$usuario_id);
-        $sql->bindValue(2,$decreto);
-        $sql->bindValue(3,$observacion);
-        $sql->bindValue(4,1);
-        $sql->bindValue(5,$firma_gdh_usuario);
-        $sql->bindValue(6,$id);
+        $sql->bindValue(1, $usuario_id);
+        $sql->bindValue(2, $decreto);
+        $sql->bindValue(3, $observacion);
+        $sql->bindValue(4, 1);
+        $sql->bindValue(5, $firma_gdh_usuario);
+        $sql->bindValue(6, $id);
 
         $sql->execute();
 
@@ -82,13 +93,14 @@ class Registros extends Conectar
 
     }
 
-    public function firmar_destino($id,$observacion){
+    public function firmar_destino($id, $observacion)
+    {
 
         $sql = "UPDATE registros SET firma_destino = ?, firma_destino_fecha = now(), obs_validador = ? WHERE id = ?";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1,1);
-        $sql->bindValue(2,$observacion);
-        $sql->bindValue(3,$id);
+        $sql->bindValue(1, 1);
+        $sql->bindValue(2, $observacion);
+        $sql->bindValue(3, $id);
 
         $sql->execute();
 
