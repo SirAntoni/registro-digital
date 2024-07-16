@@ -122,11 +122,15 @@
                             <div class="col-sm-4">
                                 <div class="form-group mb-2">
                                     <label for="promotor">Promotor</label>
-                                    <select name="promotor" id="promotor" class='form-control'>
-                                        <option value=''>Seleccionar</option>
+                                    <select id="promotor" name="promotor" placeholder="Seleccione un promotor.">
                                         <option value='DEICI'>DEICI</option>
                                         <option value='DIE'>DIE</option>
                                     </select>
+                                    <!--select name="promotor" id="promotor" class='form-control'>
+                                        <option value=''>Seleccionar</option>
+                                        <option value='DEICI'>DEICI</option>
+                                        <option value='DIE'>DIE</option>
+                                    </select-->
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -181,7 +185,7 @@
             <footer class="card-footer">
                 <div class="row">
                     <div class="col-md-12 text-end">
-                        <button type='submit' class="btnSubmit btn btn-primary modal-confirm"></button>
+                        <button type='submit' id="btnRegistro" class="btnSubmit btn btn-primary modal-confirm"></button>
                         <button class="btn btn-default modal-dismiss">Cancelar</button>
                     </div>
                 </div>

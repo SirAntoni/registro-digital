@@ -58,6 +58,8 @@ if (isset($_GET['view']) && $_GET['view'] === 'usuarios' && $_SESSION['rol'] !==
 	<!-- Head Libs -->
 	<script src="vendor/modernizr/modernizr.js"></script>
 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.default.min.css">
+
 </head>
 
 <body>
@@ -117,6 +119,8 @@ if (isset($_GET['view']) && $_GET['view'] === 'usuarios' && $_SESSION['rol'] !==
 	<script src="vendor/nanoscroller/nanoscroller.js"></script>
 	<script src="vendor/magnific-popup/jquery.magnific-popup.js"></script>
 	<script src="vendor/jquery-placeholder/jquery.placeholder.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
+
 
 	<!-- Specific Page Vendor -->
 
@@ -141,6 +145,9 @@ if (isset($_GET['view']) && $_GET['view'] === 'usuarios' && $_SESSION['rol'] !==
 	<script src="js/custom.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/modals.js"></script>
+
+
+	
 
 </body>
 

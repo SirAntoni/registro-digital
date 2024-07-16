@@ -18,6 +18,10 @@ $(function () {
         filtrarPendientes();
         firmarDocumentoDestino();
         filtrarAsunto();
+        $('#promotor').selectize({
+            create: true, // Permite al usuario crear nuevas opciones
+            sortField: 'text'
+        });
 
     } else {
         cargar_perfil();
@@ -362,7 +366,7 @@ const store_registros = function () {
         if (validarDocumento() === false) return;
 
         const data = new FormData($("#formRegistros")[0])
-
+        $('#btnRegistro').prop('disabled', true);
         $.ajax({
             url: 'controller/Registro',
             method: 'POST',
@@ -371,7 +375,7 @@ const store_registros = function () {
             cache: false,
             processData: false,
             success: function (data) {
-
+                $('#btnRegistro').prop('disabled', false);
                 const response = JSON.parse(data);
 
                 if (response.status === 'error') {
