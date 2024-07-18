@@ -122,7 +122,8 @@
                             <div class="col-sm-4">
                                 <div class="form-group mb-2">
                                     <label for="promotor">Promotor</label>
-                                    <select id="promotor" name="promotor" placeholder="Seleccione un promotor.">
+                                    <select id="promotor" name="promotor" placeholder="Seleccione">
+                                        <option value=''>Seleccionar</option>
                                         <option value='DEICI'>DEICI</option>
                                         <option value='DIE'>DIE</option>
                                     </select>
@@ -136,7 +137,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group mb-2">
                                     <label for="tipo">Tipo</label>
-                                    <select name="tipo" id="tipo" class='form-control'>
+                                    <select name="tipo" id="tipo" placeholder="Seleccione">
                                         <option value=''>Seleccionar</option>
                                         <option value='FAX/M'>FAX/M</option>
                                         <option value='O/M'>O/M</option>
@@ -155,7 +156,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group mb-2">
                                     <label for="clasificacion">Clasificación</label>
-                                    <select name="clasificacion" id="clasificacion" class='form-control'>
+                                    <select name="clasificacion" id="clasificacion" placeholder="Seleccione">
                                         <option value=''>Seleccionar</option>
                                         <option value='R'>R</option>
                                         <option value='S'>S</option>

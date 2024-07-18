@@ -23,6 +23,16 @@ $(function () {
             sortField: 'text'
         });
 
+        $('#tipo').selectize({
+            create: true, // Permite al usuario crear nuevas opciones
+            sortField: 'text'
+        });
+
+        $('#clasificacion').selectize({
+            create: true, // Permite al usuario crear nuevas opciones
+            sortField: 'text'
+        });
+
     } else {
         cargar_perfil();
     }
