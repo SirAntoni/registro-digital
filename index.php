@@ -142,9 +142,9 @@ if (isset($_GET['view']) && $_GET['view'] === 'usuarios' && $_SESSION['rol'] !==
 	<script src="js/theme.js"></script>
 
 	<!-- Theme Custom -->
-	<script src="js/custom.js<?php echo rand();  ?>"></script>
-	<script src="js/app.js<?php echo rand();  ?>"></script>
-	<script src="js/modals.js<?php echo rand();  ?>"></script>
+	<script src="js/custom.js?<?php echo rand();  ?>"></script>
+	<script src="js/app.js?<?php echo rand();  ?>"></script>
+	<script src="js/modals.js?<?php echo rand();  ?>"></script>
 
 
 	
