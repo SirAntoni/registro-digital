@@ -186,7 +186,8 @@
             <footer class="card-footer">
                 <div class="row">
                     <div class="col-md-12 text-end">
-                        <button type='submit' id="btnRegistro" class="btnSubmit btn btn-primary modal-confirm"></button>
+                        <button type="submit" id="btnRegistro" class="btnSubmit btn btn-primary modal-confirm"></button>
+                        <button id="btnEncriptar" class="btn btn-warning">Cifrar registro</button>
                         <button class="btn btn-default modal-dismiss">Cancelar</button>
                     </div>
                 </div>
@@ -264,6 +265,38 @@
                 </div>
             </footer>
         </form>
+    </section>
+</div>
+
+
+<div id="modalEncriptar" class="modal-block modal-block-sm modal-header-color modal-block-success mfp-hide zoom-anim-dialog">
+    <section class="card">
+        <header class="card-header">
+            <h2 class="modalTitle card-title">Desea descrifrar el documento?</h2>
+        </header>
+            <div class="card-body">
+                <input type="hidden" class='opcion' name='opcion'>
+                <input type="hidden" class='id' name='id'>
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="row">
+                            <div id="btnDecrypt" class="col-sm-12 text-center">
+                                   
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <footer class="card-footer">
+                <div class="row">
+                    <div class="col-md-12 text-end">
+                        <button class="btn btn-default modal-dismiss">Cancelar</button>
+
+                    </div>
+                </div>
+            </footer>
     </section>
 </div>
 

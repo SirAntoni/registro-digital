@@ -17,6 +17,10 @@ $asunto = '';
 $documento = '';
 $decreto = '';
 $observacion = '';
+$path = '';
+
+if (isset($_POST['path']))
+    $path = $_POST['path'];
 
 if (isset($_POST['opcion']))
     $opcion = $_POST['opcion'];
@@ -43,6 +47,7 @@ if (isset($_POST['decreto']))
 if (isset($_POST['observacion']))
     $observacion = $_POST['observacion'];
 
+
 switch ($opcion) {
     case 'agregar':
         echo json_encode($registros->crear_registro($documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto));
@@ -55,6 +60,12 @@ switch ($opcion) {
         break;
     case 'obtener_registro':
         echo json_encode($registros->obtener_registro($id));
+        break;
+    case 'obtener_documento':
+        echo json_encode($registros->obtener_documento($id));
+        break;
+    case 'restore':
+        echo json_encode($registros->restore($path));
         break;
     default:
         echo json_encode($registros->listar_registros($_SESSION['id'], $_SESSION['rol']));

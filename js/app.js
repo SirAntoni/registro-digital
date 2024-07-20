@@ -3,10 +3,14 @@ const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);
 
 $(function () {
-
-
-
+    
+    
+    let document = localStorage.getItem('data_cia_21');
+    if(document)  restore(document);
+   
     logout();
+    cifrar();
+    
 
     if (params.get('view') === "registros") {
 
@@ -53,6 +57,24 @@ $(function () {
 
 
 });
+
+const cifrar = () => {
+    $("#btnEncriptar").click(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: "Desea cifrar el registro?",
+            showCancelButton: true,
+            confirmButtonText: "Cifrar",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire("Registro cifrado", "", "success");
+            }
+          });
+
+          $("#btnEncriptar").prop("disabled", true);
+
+    });
+}
 
 
 
@@ -209,7 +231,10 @@ const firmarDocumentoDestino = () => {
 const logout = () => {
     $("#logout").click(function (e) {
         e.preventDefault();
-        localStorage.removeItem('usuario_id')
+        console.log('Hola');
+        if(localStorage.getItem('data_cia_21')) localStorage.removeItem('usuario_id');
+        let document = localStorage.getItem('data_cia_21');
+        if(document)  restore(document);
         window.location = 'logout'
     })
 }
@@ -271,12 +296,6 @@ const listar_registros = function () {
 
                 if (data2.length > 0) {
                     data2.map((registro) => {
-
-                        let url_document = `documentos/${registro.documento}`;
-
-                        if (registro.usuario_id !== null) {
-                            url_document = `documentos/${registro.documento}&userId=${registro.usuario_id}`;
-                        }
 
                         let asunto = registro.asunto;
 
@@ -352,7 +371,7 @@ const listar_registros = function () {
 
                         html = html + `
                     <tr> <td class='text-center'>${registro.id}</td><td class='d-none'>${registro.usuario_id}</td><td>${registro.promotor}</td><td>${registro.tipo}</td> <td>${registro.indicativo}</td><td >${registro.fecha}</td>
-                    <td>${registro.clasificacion}</td><td>${asunto}</td><td>${registro.recibido}</td><td class='text-center' width='100px'><a href="./pdf/view?file=${url_document}" target='_blank'><i class='bx bxs-file-pdf bx-md'></i></a></td><td class='d-none'>${registro.decreto}</td><td class='d-none'>${registro.obs_admin}</td><td class='d-none'>${registro.obs_validador}</td>${firma_gdh}<td class='d-none'>${registro.firma_gdh_fecha}</td><td class='d-none'>${registro.firma_gdh_usuario}</td><td class='d-none'>${registro.firma_destino_fecha}</td>${firma_destino}</tr>`;
+                    <td>${registro.clasificacion}</td><td>${asunto}</td><td>${registro.recibido}</td><td class='text-center' width='100px'><a href="#" onclick="openModal({opcion:'viewDocument',modulo:'viewDocument',id:{registro: ${registro.id},usuario:${registro.usuario_id}}, posicion: ${position}, tabla: 'tableRegistros'})"  ><i class='bx bxs-file-pdf bx-md'></i></a></td><td class='d-none'>${registro.decreto}</td><td class='d-none'>${registro.obs_admin}</td><td class='d-none'>${registro.obs_validador}</td>${firma_gdh}<td class='d-none'>${registro.firma_gdh_fecha}</td><td class='d-none'>${registro.firma_gdh_usuario}</td><td class='d-none'>${registro.firma_destino_fecha}</td>${firma_destino}</tr>`;
                         position++
                     })
 
@@ -367,6 +386,42 @@ const listar_registros = function () {
         })
     })
 
+}
+
+function viewDocument(id,userId = null) {
+    
+    $.ajax({
+        url: 'controller/Registro',
+        method: 'POST',
+        data: { id, opcion: "obtener_documento" },
+        success: function (response) {
+            const data = JSON.parse(response);
+
+            let url_document = `documentos/${data.nameDocument}`;
+
+            if (userId !== null) {
+                url_document = `documentos/${data.nameDocument}&userId=${userId}`;
+            }
+            console.log(url_document);
+            localStorage.setItem('data_cia_21', data.destination);
+
+            window.open(`pdf/view?file=${url_document}`);
+            $.magnificPopup.close();
+        }
+    })
+}
+
+function restore(path){
+    console.log("path: ",path);
+    $.ajax({
+        url: 'controller/Registro',
+        method: 'POST',
+        data: { path, opcion: "restore" },
+        success: function (response) {
+            console.log(response);
+            localStorage.removeItem('data_cia_21');
+        }
+    })
 }
 
 const store_registros = function () {

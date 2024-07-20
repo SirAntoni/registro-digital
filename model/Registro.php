@@ -9,6 +9,29 @@ class Registros extends Conectar
         $this->db = Conectar::conexion();
     }
 
+    private function encryptFile($source, $destination, $key) {
+        $cipher = "aes-256-cbc";
+        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher));
+    
+        $input = file_get_contents($source);
+        $encrypted = openssl_encrypt($input, $cipher, $key, 0, $iv);
+    
+        $result = $iv . $encrypted;
+        file_put_contents($destination, $result);
+    }
+
+    private function decryptFile($source, $destination, $key) {
+        $cipher = "aes-256-cbc";
+        $ivLength = openssl_cipher_iv_length($cipher);
+    
+        $data = file_get_contents($source);
+        $iv = substr($data, 0, $ivLength);
+        $encryptedData = substr($data, $ivLength);
+    
+        $decrypted = openssl_decrypt($encryptedData, $cipher, $key, 0, $iv);
+        file_put_contents($destination, $decrypted);
+    }
+
     public function listar_registros($id, $rol)
     {
 
@@ -37,7 +60,7 @@ class Registros extends Conectar
         return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function crear_registro($documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto)
+    public function crear_registro($documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto, $KEY)
     {
 
         if (empty($documento) || empty($promotor) || empty($tipo) || empty($indicativo) || empty($clasificacion) || empty($recibido) || empty($asunto))
@@ -48,10 +71,11 @@ class Registros extends Conectar
 
         $sql = "INSERT INTO registros (documento,promotor,tipo,indicativo,fecha,clasificacion,asunto,recibido,updated_at) VALUES(?,?,?,?,now(),?,?,?,now())";
 
-
+        $key = "12345678901234567890123456789012";
+        $source = $_FILES["documento"]['tmp_name'];
         $nombreDocumento = uniqid() . "-" . $_FILES["documento"]['name'];
-        $ruta = "../pdf/documentos/" . $nombreDocumento;
-        move_uploaded_file($_FILES["documento"]['tmp_name'], $ruta);
+        $destination = "../pdf/documentos/" . $nombreDocumento;
+        $this->encryptFile($source, $destination, $key);
 
         $sql = $this->db->prepare($sql);
 
@@ -109,6 +133,34 @@ class Registros extends Conectar
             "message" => "Documento firmado con exito"
         ];
 
+    }
+
+    public function obtener_documento($id)
+    {
+        $sql = "SELECT documento FROM registros WHERE id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+        $data = $sql->fetch(PDO::FETCH_ASSOC);
+        $key = "12345678901234567890123456789012";
+        $source = "../pdf/documentos/" . $data['documento'];
+        $destination = "../pdf/documentos/decrypted-" . $data['documento'];
+
+        $this->decryptFile($source,$destination,$key);
+
+        $response = [
+            "status" => "success",
+            "message" => "Documento obtenido con exito",
+            "nameDocument" => "decrypted-" . $data['documento'],
+            "destination" => $destination
+        ];
+
+        return $response;
+
+    }
+
+    public function restore($destination){
+        unlink($destination);
     }
 }
 

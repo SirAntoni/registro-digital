@@ -620,5 +620,4 @@ See https://github.com/adobe-type-tools/cmap-resources
   </div> <!-- outerContainer -->
   <div id="printContainer"></div>
 </body>
-
 </html>

@@ -10,6 +10,13 @@ function openModal(data) {
 
     if (modulo)
         switch (opcion) {
+            case 'viewDocument':
+                items = {
+                    src: '#modalEncriptar',
+                    type: 'inline'
+                }
+                $("#btnDecrypt").html(`<button onclick="viewDocument(${id.registro},${id.usuario})" class="btn btn-danger btn-flat">DESCIFRAR</button>`);
+                break;
             case 'firmar':
                 titulo = `Decretar documento`;
                 btnText = `Decretar`;
@@ -115,6 +122,7 @@ function openModal(data) {
                     $("#usuario").prop('disabled', false);
                     $("#fotoPerfil").html(`<img src="./img/user.jpg" alt="" class='fotoPerfil'>`);
                 }
+                $("#btnEncriptar").prop("disabled", false);
                 break;
             case 'editar':
                 titulo = `Editar ${modulo}`;
