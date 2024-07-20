@@ -4,7 +4,17 @@ const params = new URLSearchParams(url.search);
 
 $(function () {
     
+   
+        $("#documento").change(function(){
+            var archivo = $(this).prop('files')[0];
+            if (archivo) {
+                $("#btnEncriptar").prop("disabled", false);
+            } else {
+                $("#btnEncriptar").prop("disabled", true);
+            }
+        });
     
+
     let document = localStorage.getItem('data_cia_21');
     if(document)  restore(document);
    

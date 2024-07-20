@@ -187,7 +187,7 @@
                 <div class="row">
                     <div class="col-md-12 text-end">
                         <button type="submit" id="btnRegistro" class="btnSubmit btn btn-primary modal-confirm"></button>
-                        <button id="btnEncriptar" class="btn btn-warning">Cifrar registro</button>
+                        <button id="btnEncriptar" class="btn btn-warning">Cifrar documento</button>
                         <button class="btn btn-default modal-dismiss">Cancelar</button>
                     </div>
                 </div>

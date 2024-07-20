@@ -122,7 +122,7 @@ function openModal(data) {
                     $("#usuario").prop('disabled', false);
                     $("#fotoPerfil").html(`<img src="./img/user.jpg" alt="" class='fotoPerfil'>`);
                 }
-                $("#btnEncriptar").prop("disabled", false);
+                $("#btnEncriptar").prop("disabled", true);
                 break;
             case 'editar':
                 titulo = `Editar ${modulo}`;
