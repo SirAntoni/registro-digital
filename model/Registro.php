@@ -60,7 +60,7 @@ class Registros extends Conectar
         return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function crear_registro($documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto, $KEY)
+    public function crear_registro($documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto)
     {
 
         if (empty($documento) || empty($promotor) || empty($tipo) || empty($indicativo) || empty($clasificacion) || empty($recibido) || empty($asunto))
