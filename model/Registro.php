@@ -40,7 +40,11 @@ class Registros extends Conectar
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, 1);
             $sql->bindValue(2, $id);
-        } else {
+        } elseif($rol === '2') {
+            $sql = "SELECT * FROM registros WHERE create_user_id = ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $id);
+        }else {
             $sql = "SELECT * FROM registros";
             $sql = $this->db->prepare($sql);
         }
@@ -60,7 +64,7 @@ class Registros extends Conectar
         return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function crear_registro($documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto)
+    public function crear_registro($usuario_id,$documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto)
     {
 
         if (empty($documento) || empty($promotor) || empty($tipo) || empty($indicativo) || empty($clasificacion) || empty($recibido) || empty($asunto))
@@ -69,7 +73,7 @@ class Registros extends Conectar
                 "message" => "Verifique los campos vacios."
             ];
 
-        $sql = "INSERT INTO registros (documento,promotor,tipo,indicativo,fecha,clasificacion,asunto,recibido,updated_at) VALUES(?,?,?,?,now(),?,?,?,now())";
+        $sql = "INSERT INTO registros (documento,promotor,tipo,indicativo,fecha,clasificacion,asunto,recibido,updated_at,create_user_id) VALUES(?,?,?,?,now(),?,?,?,now(),?)";
 
         $key = "12345678901234567890123456789012";
         $source = $_FILES["documento"]['tmp_name'];
@@ -86,6 +90,7 @@ class Registros extends Conectar
         $sql->bindValue(5, $clasificacion);
         $sql->bindValue(6, $asunto);
         $sql->bindValue(7, $recibido);
+        $sql->bindValue(8, $usuario_id);
 
         $sql->execute();
 

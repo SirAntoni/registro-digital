@@ -50,7 +50,7 @@ if (isset($_POST['observacion']))
 
 switch ($opcion) {
     case 'agregar':
-        echo json_encode($registros->crear_registro($documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto));
+        echo json_encode($registros->crear_registro($_SESSION['id'],$documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto));
         break;
     case 'firmar':
         echo json_encode($registros->firmar($id, $_SESSION['id'], $usuario, $decreto, $observacion));
