@@ -52,6 +52,9 @@ switch ($opcion) {
     case 'agregar':
         echo json_encode($registros->crear_registro($_SESSION['id'],$documento, $promotor, $tipo, $indicativo, $clasificacion, $recibido, $asunto));
         break;
+    case 'eliminar':
+        echo json_encode($registros->eliminar_registro($_SESSION['rol'],$id));
+        break;
     case 'firmar':
         echo json_encode($registros->firmar($id, $_SESSION['id'], $usuario, $decreto, $observacion));
         break;

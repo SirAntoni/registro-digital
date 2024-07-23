@@ -26,6 +26,7 @@ $(function () {
 
         cargar_perfil_2();
         store_registros();
+        delete_registros();
         obtener_validadores();
         filtrarRegistros();
         firmarDocumento();
@@ -303,9 +304,10 @@ const listar_registros = function () {
                 } else {
                     data2 = data.filter(r => r.fecha.split(" ")[0] === filtro)
                 }
-
+                const rol = localStorage.getItem('rol');
                 if (data2.length > 0) {
                     let i = 1;
+                    let eliminar = "";
                     data2.map((registro) => {
 
                         let asunto = registro.asunto;
@@ -318,9 +320,11 @@ const listar_registros = function () {
                         let firma_gdh = ``;
                         let firma_destino = ``;
                         const usuario_id = localStorage.getItem('usuario_id');
-                        const rol = localStorage.getItem('rol');
+                        
 
                         if (rol === "1") {
+
+                            eliminar = `<td class='text-center'><a href="#" class="delete-row" onclick="openModal({opcion:'eliminar',modulo:'registro',id:${registro.id}, posicion: ${position}, tabla: 'tableRegistros'})"><i class="far fa-trash-alt"></i></a></td>`;
 
                             firma_gdh = `<td width='30px' class="text-center">
                             <button onclick="openModal({opcion:'firmar',modulo:'firmar',id:${registro.usuario_id}, posicion: ${position}, tabla: 'tableRegistros'})" class='btn btn-secondary' >Decretar</button>
@@ -382,13 +386,13 @@ const listar_registros = function () {
 
                         html = html + `
                     <tr><td class='text-center'>${i++}</td> <td class='text-center d-none'>${registro.id}</td><td class='d-none'>${registro.usuario_id}</td><td>${registro.promotor}</td><td>${registro.tipo}</td> <td>${registro.indicativo}</td><td >${registro.fecha}</td>
-                    <td>${registro.clasificacion}</td><td>${asunto}</td><td>${registro.recibido}</td><td class='text-center' width='100px'><a href="#" onclick="openModal({opcion:'viewDocument',modulo:'viewDocument',id:{registro: ${registro.id},usuario:${registro.usuario_id}}, posicion: ${position}, tabla: 'tableRegistros'})"  ><i class='bx bxs-file-pdf bx-md'></i></a></td><td class='d-none'>${registro.decreto}</td><td class='d-none'>${(registro.obs_admin === '') ? "-":registro.obs_admin}</td><td class='d-none'>${(registro.obs_validador === "" ? "-":registro.obs_validador)}</td>${firma_gdh}<td class='d-none'>${registro.firma_gdh_fecha}</td><td class='d-none'>${registro.firma_gdh_usuario}</td><td class='d-none'>${registro.firma_destino_fecha}</td>${firma_destino}</tr>`;
+                    <td>${registro.clasificacion}</td><td>${asunto}</td><td>${registro.recibido}</td><td class='text-center' width='100px'><a href="#" onclick="openModal({opcion:'viewDocument',modulo:'viewDocument',id:{registro: ${registro.id},usuario:${registro.usuario_id}}, posicion: ${position}, tabla: 'tableRegistros'})"  ><i class='bx bxs-file-pdf bx-md'></i></a></td><td class='d-none'>${registro.decreto}</td><td class='d-none'>${(registro.obs_admin === '') ? "-":registro.obs_admin}</td><td class='d-none'>${(registro.obs_validador === "" ? "-":registro.obs_validador)}</td>${firma_gdh}<td class='d-none'>${registro.firma_gdh_fecha}</td><td class='d-none'>${registro.firma_gdh_usuario}</td><td class='d-none'>${registro.firma_destino_fecha}</td>${firma_destino}${eliminar}</tr>`;
                         position++
                     })
 
 
                 } else {
-                    html = html + `<tr><td class='text-center' colspan='11'>No se encontraron resultados</td></tr>`;
+                    html = html + `<tr><td class='text-center' colspan='${rol === "1" ? 12:11}'>No se encontraron resultados</td></tr>`;
                 }
 
                 $("#table-registros").html(html);
@@ -637,4 +641,35 @@ const delete_usuarios = function () {
         })
     })
 }
+
+const delete_registros = function () {
+    $('#formRegistrosDelete').submit(function (e) {
+        e.preventDefault();
+        const data = $(this).serialize()
+        $.ajax({
+            url: 'controller/Registro',
+            method: 'POST',
+            data: data,
+            success: function (data) {
+                const response = JSON.parse(data)
+                if (response.status === 'error') {
+                    Swal.fire(
+                        response.status,
+                        response.message,
+                        'error'
+                    )
+                } else {
+                    Swal.fire(
+                        response.status,
+                        response.message,
+                        'success'
+                    )
+                    listar_registros();
+                    $.magnificPopup.close();
+                }
+            }
+        })
+    })
+}
+
 

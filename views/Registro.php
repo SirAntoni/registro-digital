@@ -66,14 +66,15 @@
                                 <th class='d-none'>Firma gdh usuario</th>
                                 <th class='d-none'>F. Destino fecha</th>
                                 <th width='100px'>Firma / GFH</th>
-                               
+                                <?php 
+                                    $accion = "<th class='text-center' width='100px'>Acciòn</th>";
+                                    ($_SESSION['rol'] === "1") ? print($accion) : ''; ?>
                                 
-
                             </tr>
                         </thead>
                         <tbody id='table-registros' style='vertical-align:middle'>
                             <tr>
-                                <td class='text-center' colspan='11'>Cargando datos...</td>
+                                <td class='text-center' colspan='<?php echo ($_SESSION['rol'] === "1") ? 12:11 ?>'>Cargando datos...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -412,6 +413,36 @@
             <div class="row">
                 <div class="col-md-12 text-end">
                     <form class='form'>
+                        <button class="btn btn-default modal-dismiss">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>
+<div id="modalFormDelete" class="modal-block modal-header-color modal-block-danger mfp-hide zoom-anim-dialog">
+    <section class="card">
+        <header class="card-header">
+            <h2 class="modalTitle card-title">Danger!</h2>
+        </header>
+        <div class="card-body">
+            <div class="modal-wrapper">
+                <div class="modal-icon">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="modal-text">
+                    <h4 class="font-weight-bold text-dark">Eliminar Registro</h4>
+                    <p>¿Esta seguro que desea eliminar el registro?</p>
+                </div>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <div class="row">
+                <div class="col-md-12 text-end">
+                    <form id="formRegistrosDelete" class='form'>
+                        <input type="hidden" class='opcion' name='opcion'>
+                        <input type="hidden" class='id' name='id'>
+                        <button type='submit' class="btnSubmit btn btn-danger">Eliminar</button>
                         <button class="btn btn-default modal-dismiss">Cancelar</button>
                     </form>
                 </div>

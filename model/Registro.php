@@ -167,6 +167,27 @@ class Registros extends Conectar
     public function restore($destination){
         unlink($destination);
     }
+
+    public function eliminar_registro($rol,$id)
+    {
+
+        if($rol !== '1'){
+            return [
+                "status" => "error",
+                "message" => "No tienes permisos para eliminar."
+            ];
+        }
+            
+        $sql = "DELETE FROM registros WHERE id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+
+        return [
+            "status" => "success",
+            "message" => "Se ha eliminado con exito."
+        ];
+    }
 }
 
 
