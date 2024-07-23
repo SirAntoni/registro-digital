@@ -59,9 +59,10 @@ class Usuarios extends Conectar
     public function listar_validadores()
     {
 
-        $sql = "SELECT id,nombres,apellidos FROM usuarios WHERE rol = ?";
+        $sql = "SELECT id,nombres,apellidos FROM usuarios WHERE rol = ? AND estado = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1,3);
+        $sql->bindValue(2,"activo");
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
 

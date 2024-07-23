@@ -71,6 +71,17 @@ function openModal(data) {
 
                 })
 
+                $.ajax({
+                    url: "controller/Usuario",
+                    method: "POST",
+                    data: { id: datos[1], opcion: "obtener_perfil_firma" },
+                    success: function (response) {
+                        const data = JSON.parse(response);
+                        $("#destino").html(`<strong>Destino: </strong>${data.nombres.split(" ")[0]} ${data.apellidos.split(" ")[0]}`);
+                    }
+
+                })
+
                 break;
             case 'asuntoCompleto':
                 titulo = `Asunto`;

@@ -347,6 +347,7 @@
            
         <div class="row">
             <div class="col-md-12">
+                <p id="destino">Destino: @destino</p>
                 <p id="nombreRegistro"></p>
                 <p id="fechaDecretado"></p>
                 <p id="decreto"></p>
