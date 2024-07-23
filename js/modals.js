@@ -140,16 +140,16 @@ function openModal(data) {
                 datos = obtenerDataTable(tabla, posicion)
 
                 if (modulo === 'usuario') {
-                    $(".id").val(datos[0])
-                    $("#usuario").val(datos[1])
+                    $(".id").val(datos[1])
+                    $("#usuario").val(datos[2])
                     $("#usuario").prop('disabled', true)
-                    $("#nombres").val(datos[2])
-                    $("#apellidos").val(datos[3])
-                    $("#rol").val(datos[7])
-                    $("#estado").val(datos[8])
-                    $("#archivoFoto").val(datos[4])
-                    $("#archivoFirma").val(datos[5])
-                    $("#fotoPerfil").html(`<img src="./img/fotos/${datos[4]}" alt="" class='fotoPerfil'>`)
+                    $("#nombres").val(datos[3])
+                    $("#apellidos").val(datos[4])
+                    $("#rol").val(datos[8])
+                    $("#estado").val(datos[9])
+                    $("#archivoFoto").val(datos[5])
+                    $("#archivoFirma").val(datos[6])
+                    $("#fotoPerfil").html(`<img src="./img/fotos/${datos[5]}" alt="" class='fotoPerfil'>`)
                 }
 
                 break;
@@ -161,7 +161,7 @@ function openModal(data) {
                     type: 'inline'
                 }
                 datos = obtenerDataTable(tabla, posicion)
-                $(".id").val(datos[0])
+                $(".id").val(datos[1])
                 break;
             default:
                 console.log('ERROR')

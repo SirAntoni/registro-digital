@@ -540,6 +540,7 @@ const listar_usuarios = function () {
             let html = ``;
             let position = parseInt(1)
             if (data.length > 0) {
+                let i =1;
                 data.map((usuario) => {
                     let rol = null;
                     if (usuario.rol === "1") {
@@ -551,7 +552,7 @@ const listar_usuarios = function () {
                     }
 
                     html = html + `
-                    <tr> <td class='text-center'>${usuario.id}</td><td class='d-none'>${usuario.usuario}</td><td>${usuario.nombres}</td><td>${usuario.apellidos}</td> <td class='d-none'>${usuario.foto}</td><td class='d-none'>${usuario.firma}</td>
+                    <tr><td class='text-center'>${i++}</td> <td class='text-center d-none'>${usuario.id}</td><td class='d-none'>${usuario.usuario}</td><td>${usuario.nombres}</td><td>${usuario.apellidos}</td> <td class='d-none'>${usuario.foto}</td><td class='d-none'>${usuario.firma}</td>
                     <td>${rol}</td><td class='d-none'>${usuario.rol}</td> <td>${usuario.estado}</td> <td width='30px' class="text-center">
                     <a href='#' onclick="openModal({opcion:'editar',modulo:'usuario',id:${usuario.id}, posicion: ${position}, tabla: 'tableUsuarios'})"><i class="fas fa-pencil-alt"></i></a>
                     <a href="#" class="delete-row" onclick="openModal({opcion:'eliminar',modulo:'usuario',id:${usuario.id}, posicion: ${position}, tabla: 'tableUsuarios'})"><i class="far fa-trash-alt"></i></a>
