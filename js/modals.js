@@ -28,7 +28,7 @@ function openModal(data) {
                 datos = obtenerDataTable(tabla, posicion)
 
                 if (modulo === 'firmar') {
-                    $(".id").val(datos[0])
+                    $(".id").val(datos[1])
                 }
 
                 break;
@@ -43,7 +43,7 @@ function openModal(data) {
                 datos = obtenerDataTable(tabla, posicion)
 
                 if (modulo === 'firmarDestino') {
-                    $(".id").val(datos[0])
+                    $(".id").val(datos[1])
                 }
 
                 break;
@@ -59,13 +59,13 @@ function openModal(data) {
                 $.ajax({
                     url: "controller/Usuario",
                     method: "POST",
-                    data: { id: datos[15], opcion: "obtener_perfil_firma" },
+                    data: { id: datos[16], opcion: "obtener_perfil_firma" },
                     success: function (response) {
                         const data = JSON.parse(response);
                         $("#nombreRegistro").html(`<strong>Nombres y Apellidos: </strong>${data.nombres.split(" ")[0]} ${data.apellidos.split(" ")[0]}`)
-                        $("#fechaDecretado").html(`<strong>Fecha: </strong> ${datos[14]}`)
-                        $("#decreto").html(`<strong>Decreto: </strong> ${datos[10]}`)
-                        $("#obsDecreto").html(`<strong>Observaciones: </strong> ${datos[11]}`)
+                        $("#fechaDecretado").html(`<strong>Fecha: </strong> ${datos[15]}`)
+                        $("#decreto").html(`<strong>Decreto: </strong> ${datos[11]}`)
+                        $("#obsDecreto").html(`<strong>Observaciones: </strong> ${datos[12]}`)
 
                     }
 
@@ -74,7 +74,7 @@ function openModal(data) {
                 $.ajax({
                     url: "controller/Usuario",
                     method: "POST",
-                    data: { id: datos[1], opcion: "obtener_perfil_firma" },
+                    data: { id: datos[2], opcion: "obtener_perfil_firma" },
                     success: function (response) {
                         const data = JSON.parse(response);
                         $("#destino").html(`<strong>Destino: </strong>${data.nombres.split(" ")[0]} ${data.apellidos.split(" ")[0]}`);
@@ -90,7 +90,6 @@ function openModal(data) {
                     type: 'inline'
                 }
 
-                datos = obtenerDataTable(tabla, posicion)
                 $.ajax({
                     url: "controller/Registro",
                     method: "POST",
@@ -116,12 +115,12 @@ function openModal(data) {
                 $.ajax({
                     url: "controller/Usuario",
                     method: "POST",
-                    data: { id: datos[1], opcion: "obtener_perfil_firma" },
+                    data: { id: datos[2], opcion: "obtener_perfil_firma" },
                     success: function (response) {
                         const data = JSON.parse(response);
                         $("#nombreValidador").html(`<strong>Nombres y apellidos: </strong>${data.nombres.split(" ")[0]} ${data.apellidos.split(" ")[0]}`)
-                        $("#fechaValidador").html(`<strong>Fecha: </strong> ${datos[16]}`)
-                        $("#obsValidador").html(`<strong>Observaciones: </strong> ${datos[12]}`)
+                        $("#fechaValidador").html(`<strong>Fecha: </strong> ${datos[17]}`)
+                        $("#obsValidador").html(`<strong>Observaciones: </strong> ${datos[13]}`)
                     }
                 })
 

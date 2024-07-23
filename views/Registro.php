@@ -47,7 +47,8 @@
                     <table id='tableRegistros' class="table table-bordered table-responsive-md table-hover mb-0">
                         <thead class='dark'>
                             <tr>
-                                <th width='70px'>Nro</th>
+                                <th>Nro</th>
+                                <th class='d-none'>Nro</th>
                                 <th class='d-none'>Usuario</th>
                                 <th>Promotor</th>
                                 <th>Tipo</th>
