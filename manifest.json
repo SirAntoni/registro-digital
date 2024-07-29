@@ -2,7 +2,7 @@
     "name": "Registro Digital",
     "short_name": "Registro Digital",
     "description": "Registro Digital",
-    "start_url": "/index.php",
+    "start_url": "./index.php",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
