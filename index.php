@@ -44,7 +44,6 @@ if (isset($_GET['view']) && $_GET['view'] === 'usuarios' && $_SESSION['rol'] !==
     <link rel="stylesheet" href="vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
     <link rel="stylesheet" href="vendor/datatables/media/css/dataTables.bootstrap5.css" />
     <link rel="stylesheet" href="vendor/bootstrap-fileupload/bootstrap-fileupload.min.css" />
-    <link rel="manifest" href="manifest.json">
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="css/theme.css" />
@@ -146,18 +145,6 @@ if (isset($_GET['view']) && $_GET['view'] === 'usuarios' && $_SESSION['rol'] !==
     <script src="js/custom.js?<?php echo rand();  ?>"></script>
     <script src="js/app.js?<?php echo rand();  ?>"></script>
     <script src="js/modals.js?<?php echo rand();  ?>"></script>
-    <script>
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-            .then((registration) => {
-                console.log('Service Worker registrado con éxito:', registration);
-            })
-            .catch((error) => {
-                console.log('Error en el registro del Service Worker:', error);
-            });
-    }
-    </script>
-
 
 
 </body>

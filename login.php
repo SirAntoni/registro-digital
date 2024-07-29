@@ -31,6 +31,7 @@ if(isset($_SESSION['id'])){
 	<link rel="stylesheet" href="vendor/font-awesome/css/all.min.css" />
 	<link rel="stylesheet" href="vendor/boxicons/css/boxicons.min.css" />
 	<link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css" />
+    <link rel="manifest" href="manifest.json">
 
 	<!-- Theme CSS -->
 	<link rel="stylesheet" href="css/theme.css" />
@@ -119,6 +120,18 @@ if(isset($_SESSION['id'])){
 
 	<!-- Theme Initialization Files -->
 	<script src="js/theme.init.js"></script>
+
+	<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+            .then((registration) => {
+                console.log('Service Worker registrado con éxito:', registration);
+            })
+            .catch((error) => {
+                console.log('Error en el registro del Service Worker:', error);
+            });
+    }
+    </script>
 
 </body>
 
