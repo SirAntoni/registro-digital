@@ -1,7 +1,7 @@
 {
-    "name": "Registro Digital",
-    "short_name": "Registro Digital",
-    "description": "Registro Digital",
+    "name": "Maps",
+    "short_name": "Maps",
+    "description": "Maps",
     "start_url": "./login.php",
     "display": "standalone",
     "background_color": "#ffffff",
